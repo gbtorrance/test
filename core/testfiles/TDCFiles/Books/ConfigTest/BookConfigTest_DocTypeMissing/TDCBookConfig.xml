@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+
+	<BookName>ConfigTest_DocTypeMissing</BookName>
+	<BookDescription>Book used for testing configuration; DocType is missing from TDCBookConfig</BookDescription>
+
+	<DocTypes>
+		<DocType>
+			<DocTypeName>DocType1</DocTypeName>
+			<MinPerTestCase>0</MinPerTestCase>
+			<MaxPerTestCase>2</MaxPerTestCase>
+		</DocType>
+	</DocTypes>
+	
+	<Pages>
+		<Page>
+			<PageName>Page1</PageName>
+			<ModelAddress>/ConfigTest/SchemaConfigTest/ModelConfigTest</ModelAddress>
+			<DocTypeName>DocTypeNotInConfig</DocTypeName>
+		</Page>
+	</Pages>
+
+	<DefaultStyle>
+		<FontName>Calibri</FontName>
+		<FontHeight>11</FontHeight>
+	</DefaultStyle>
+	
+</Config>

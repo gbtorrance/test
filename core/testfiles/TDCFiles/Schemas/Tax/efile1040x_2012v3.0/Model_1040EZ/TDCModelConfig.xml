@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>2012v3.0_1040EZ</ModelName>
+	<ModelDescription>TY2012 v3.0 1040A</ModelDescription>
+	<SchemaRootFile>2012v3.0/IndividualIncomeTax/Ind1040EZ/Return1040EZ.xsd</SchemaRootFile>
+	<SchemaRootElementName>Return</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://www.irs.gov/efile</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>true</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	<DefaultOccursCount>1</DefaultOccursCount>
+
+	<Customizer>
+		<FileNamePrefix>Customizer_</FileNamePrefix>
+		<DefaultStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultStyle>
+		<DefaultNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultNodeStyle>
+		<ParentNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>0 0 255</ColorRGB> <!-- blue -->
+			<Italic>false</Italic>
+		</ParentNodeStyle>
+		<AttribNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>34 97 13</ColorRGB> <!-- green -->
+		</AttribNodeStyle>
+		<CompositorNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>64 64 64</ColorRGB> <!-- dark gray -->
+			<Italic>true</Italic>
+		</CompositorNodeStyle>
+		<ChoiceMarkerNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+		</ChoiceMarkerNodeStyle>
+		<HeaderRowCount>2</HeaderRowCount>
+		<NodeColumnCount>25</NodeColumnCount>
+		<NodeColumnWidth>500</NodeColumnWidth>
+		<ReadOccursCountOverrideFromVariable>OCCURS_COUNT_OVERRIDE</ReadOccursCountOverrideFromVariable>
+		<AllowMinMaxInvalidOccursCountOverride>true</AllowMinMaxInvalidOccursCountOverride>
+	</Customizer>
+	
+</Config>

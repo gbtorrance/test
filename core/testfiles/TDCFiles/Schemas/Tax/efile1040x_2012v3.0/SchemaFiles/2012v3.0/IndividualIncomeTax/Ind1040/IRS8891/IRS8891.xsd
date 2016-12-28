@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Individual Income Tax Schema - IRS Form 8891 U.S. Information Return for Beneficiaries of Certain Canadian Registered Retirement Plans</Description>
+			<TaxYear>2012</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>September 7, 2012</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+	
+	<!-- ================================================================ -->
+	<!-- ======================= IRS Form 8891 ========================== -->
+	<!-- ================================================================ -->
+	
+	<xsd:element name="IRS8891">
+		<xsd:annotation>
+			<xsd:documentation>IRS Form 8891</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS8891Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS8891">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="IRS8891Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS Form 8891</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			
+			<!-- Choice between Calendar Year or Tax Year Detail Grp -->
+			<xsd:choice>
+				<!-- Calendar Year -->
+				<xsd:element name="CurrentCalendarYear" type="YearType">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Calendar Year</Description>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+
+				<!-- Tax Year Detail Grp -->
+				<xsd:sequence>
+					<!-- Tax Year Beginning Date -->
+					<xsd:element name="TaxYearBeginDate" type="DateType">
+						<xsd:annotation>
+							<xsd:documentation>
+								<Description>Tax Year Beginning Date</Description>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>			
+					<!-- Tax Year Ending Date -->
+					<xsd:element name="TaxYearEndDate" type="DateType">
+						<xsd:annotation>
+							<xsd:documentation>
+								<Description>Tax Year Ending Date</Description>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:element>			
+				</xsd:sequence>
+			</xsd:choice>
+
+			<!-- Name of Plan Custodian -->
+			<xsd:element name="CanadaRetirePlanCustodianName" type="BusinessNameType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Name of Plan Custodian</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>0020</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<!-- Account number -->
+			<xsd:element name="CanadaRetirePlanAccountNum">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Account Number</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>0030</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="TextType">
+						<xsd:maxLength value="30"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<xsd:choice minOccurs="0">
+			<xsd:element name="USAddress" type="USAddressType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>US Address</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>0035 0040 0050 0060 0070</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+			<xsd:element name="ForeignAddress" type="ForeignAddressType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>foreign address</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>0035 0040 0050 0060 0070 0080 0090 0100</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			</xsd:choice>
+			
+			<!--Choose savings plan or income fund -->
+			<xsd:choice>
+			<xsd:element name="CanadaRegdRetireSavingPlanInd" type="CheckboxType">
+				<xsd:annotation>
+					<xsd:documentation>
+							<Description>Registered Retirement Savings Plan</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>0035 0040 0050 0060 0070</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+			<xsd:element name="CanadaRegdRetireIncomeFundInd" type="CheckboxType">
+				<xsd:annotation>
+					<xsd:documentation>
+							<Description>Registered Retirement Income Fund</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>0035 0040 0050 0060 0070 0080 0090 0100</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			</xsd:choice>
+			
+			<!-- Choose beneficiary or annuitant-->
+			<xsd:choice>
+			<xsd:element name="CanadaRetirePlanBeneficiaryInd" type="CheckboxType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Beneficiary</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>0130</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+			<xsd:element name="CanadaRetirePlanAnnuitantInd" type="CheckboxType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Annuitant (Complete only lines 7a, 7b, and 8.)</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>0140</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			</xsd:choice>			
+			
+			<xsd:element name="USTaxDeferralElectPreviousInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>previously made election to defer us income tax on the undistributed earnings?</Description>
+						<LineNumber>6a</LineNumber>
+						<ELFFieldNumber>0150 0160</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="USTaxDeferralElectionFirstYr" type="YearType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>enter first year the election came into effect</Description>
+						<LineNumber>6b</LineNumber>
+						<ELFFieldNumber>0170</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="USTaxDeferralNewElectionInd" type="CheckboxType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>make an election for this year and subsequent years by checking this box</Description>
+						<LineNumber>6c</LineNumber>
+						<ELFFieldNumber>0180</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- distributions-->
+			<xsd:element name="CanadaRetireCYDistributionAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>distributions received from the plan during the year</Description>
+						<LineNumber>7a</LineNumber>
+						<ELFFieldNumber>0190</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="CanadaRetireCYTxblDistriAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>taxable distributions received from the plan during the year</Description>
+						<LineNumber>7b</LineNumber>
+						<ELFFieldNumber>0200</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="CanadaRetireEOYPlanBalanceAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>plan balance at the end of the year</Description>
+						<LineNumber>8</LineNumber>
+						<ELFFieldNumber>0210</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="CanadaRetireCYContributionAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>contributions to the plan during the year</Description>
+						<LineNumber>9</LineNumber>
+						<ELFFieldNumber>0220</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="CARetireCYUndistrIntIncAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Canada Retire Current Year Undistributed Interest Interest Amount</Description>
+						<LineNumber>10a</LineNumber>
+						<ELFFieldNumber>0230</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="CanadaRetireCYUndistrOrdDivAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Canada Retire Current Year Undistributed Ordinary Dividend Amount</Description>
+						<LineNumber>10b</LineNumber>
+						<ELFFieldNumber>0240</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<xsd:element name="CARetireCYUndistrQlfyDivAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Canada Retire Current Year Undistributed Qualified Dividend Amount</Description>
+						<LineNumber>10c</LineNumber>
+						<ELFFieldNumber>0250</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="CanadaRetireCYUndistrCapGnAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Canada Retire Current Year Undistributed Capital Gains Amount</Description>
+						<LineNumber>10d</LineNumber>
+						<ELFFieldNumber>0260</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<xsd:element name="CanadaRetireUndistrOthIncome" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="UndistributedOtherIncomeType" type="LineExplanationType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Undistributed Other Income Type</Description>
+									<LineNumber>10e</LineNumber>
+									<ELFFieldNumber>0270</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="UndistributedOtherIncomeAmt" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Undistributed Other Income Amount</Description>
+									<LineNumber>10e</LineNumber>
+									<ELFFieldNumber>0270</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+				</xsd:element>
+
+				<xsd:element name="CanadaRetireCYUndistrOthIncAmt" type="USAmountType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Canada Retire CY Undistributed Other IIncome Amount</Description>
+							<LineNumber>10e</LineNumber>
+							<ELFFieldNumber>0270</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://com.gurtz.tdc/test" xmlns:test="http://com.gurtz.tdc/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://com.gurtz.tdc/test" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+
+	<!--xsd:include schemaLocation="TestTypes.xsd"/-->
+
+	<xsd:element name="TestVarious">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="ElementFixed" fixed="SomeFixedValue"/>
+				<xsd:element name="ElementDefault" default="SomeDefaultValue"/>
+				<xsd:element name="ElementNotFixedOrDefault"/>
+				<xsd:element name="ElementEmpty1" fixed=""/>
+				<xsd:element name="ElementEmpty2">
+					<xsd:complexType/>
+				</xsd:element>
+				<xsd:element name="ElementWithAttribute">
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="xsd:string">
+								<xsd:attribute name="AttributeFixed" use="required" fixed="SomeFixedAttributeValue"/>
+								<xsd:attribute ref="test:MyAttributeFixed"/>
+								<xsd:attribute ref="test:MyAttributeDefault"/>
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="ElementString1" type="xsd:string"/>
+				<xsd:element name="ElementString2" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:attribute name="MyAttributeFixed" type="xsd:string" fixed="OtherFixedAttributeValue"/>
+	<xsd:attribute name="MyAttributeDefault" type="xsd:string" fixed="DefaultAttributeValue"/>
+
+</xsd:schema>
+

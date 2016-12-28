@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.irs.gov/efile" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			<!-- generated from ELFGEN database -->
+			<Description>IRS e-file Individual Income Tax Schema - IRS 1040 Schedule D Capital Gains and Losses</Description>
+			<TaxYear>2012</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>September 7, 2012</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+
+	<!-- ======================================================================== -->
+	<!-- ======================  IRS 1040 SCHEDULE D ============================ -->
+	<!-- ======================================================================== -->
+
+	<xsd:element name="IRS1040ScheduleD">
+		<xsd:annotation>
+			<xsd:documentation>IRS 1040 Schedule D</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS1040ScheduleDType">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS1040ScheduleD">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				<xsd:attribute name="referenceDocumentId" type="IdListType" />
+				<xsd:attribute name="referenceDocumentName" type="StringType" fixed="BinaryAttachment"/>					
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="IRS1040ScheduleDType">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS 1040 Schedule D</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+		<!-- Part I Short-Term Capital Gains and Losses - Assets Held One Year or Less -->
+
+			<!-- Short-Term Gains and Losses - Form 1099B, Box 3 Shows basis -->
+			<xsd:element name="TotalSTCGL1099BShowsBasisGrp" type="CapitalGainAndLossType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Short-term totals from Form 8949 with box A checked in Part I</Description>
+						<LineNumber>1</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Short-Term Gains and Losses - Form 1099B, Box 3 Does Not Show basis -->
+			<xsd:element name="TotalSTCGL1099BNotShowBasisGrp" type="CapitalGainAndLossType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Short-term totals from Form 8949 with box B checked in Part I</Description>
+						<LineNumber>2</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Short-Term Gains and Losses - Form 1099B Not Received -->
+			<xsd:element name="TotalSTCGL1099BNotReceivedGrp" type="CapitalGainAndLossType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Short-term totals from Form 8949 with box C checked in Part I</Description>
+						<LineNumber>3</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Short Term Gain Or Loss From Other Forms Amount -->
+			<xsd:element name="STGainOrLossFromFormsAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Short-term gain from Form 6252 and short-term gain or (loss) from Forms 4684, 6781, and 8824</Description>
+						<LineNumber>4(h)</LineNumber>
+					    	<ELFFieldNumber>0715</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Net Short-Term Gain or Loss -->
+			<xsd:element name="NetSTGainOrLossFromSchK1Amt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Net short-term gain or loss</Description>
+						<LineNumber>5(h)</LineNumber>
+					    	<ELFFieldNumber>0725</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Short-Term Capital Loss Carryover -->
+			<xsd:element name="STCapitalLossCarryoverAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Short-term capital loss carryover</Description>
+						<LineNumber>6(h)</LineNumber>
+					    	<ELFFieldNumber>0860</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Net Short-Term Capital Gain or Loss -->
+			<xsd:element name="NetSTCapitalGainOrLossAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Net short-term capital gain or loss</Description>
+						<LineNumber>7(h)</LineNumber>
+					    	<ELFFieldNumber>0877</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		<!-- Part II Long-Term Capital Gains and Losses - Assets Held More Than One Year -->
+
+			<!-- Long-Term Gains and Losses - Form 1099B, Box 3 Shows basis -->
+			<xsd:element name="TotaLTCGL1099BShowsBasisGrp" type="CapitalGainAndLossType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Long-term total from Form 8949 with box A checked in Part II</Description>
+						<LineNumber>8</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Long-Term Gains and Losses - Form 1099B, Box 3 Does Not Show basis -->
+			<xsd:element name="TotalLTCGL1099BNotShowBasisGrp" type="CapitalGainAndLossType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Long-term total from Form 8949 with box B checked in Part II</Description>
+						<LineNumber>9</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Long-Term Gains and Losses - Form 1099B Not Received -->
+			<xsd:element name="TotaLTCGL1099BNotReceivedGrp" type="CapitalGainAndLossType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Long-term total from Form 8949 with box C checked in Part II</Description>
+						<LineNumber>10</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Long Term Gain Or Loss From Other Forms Amount -->
+			<xsd:element name="LTGainOrLossFromFormsAmt"  type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Gain from Form 4797, Part I; long-term gain from Forms 2439 and 6252; and long-term gain or loss from Forms 4684, 6781, and 8824</Description>
+						<LineNumber>11(h)</LineNumber>
+					    	<ELFFieldNumber>1720</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<!-- Net Long-Term Gain or Loss -->
+			<xsd:element name="NetLTGainOrLossFromSchK1Amt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Net long-term gain or loss</Description>
+						<LineNumber>12(h)</LineNumber>
+					    	<ELFFieldNumber>1731</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Form 8814 Literal Code -->
+			<xsd:element name="Form8814LiteralCd" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Form 8814 Literal Code</Description>
+						<LineNumber>13(h)</LineNumber>
+						<ELFFieldNumber>1760</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="StringType">
+						<xsd:enumeration value="FORM8814" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+
+			<!-- Form 8814 Amount -->
+			<xsd:element name="Form8814Amt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Form 8814 Amount</Description>
+						<LineNumber>13(h)</LineNumber>
+					    	<ELFFieldNumber>1770</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Capital Gain Distributions -->
+			<xsd:element name="CapitalGainDistributionsAmt" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Capital gain distributions</Description>
+						<LineNumber>13(h)</LineNumber>
+					    	<ELFFieldNumber>1775</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="USAmountType">
+							<xsd:attribute name="referenceDocumentId" type="IdListType"/>
+							<xsd:attribute name="referenceDocumentName" type="StringType" fixed="NomineeCapitalGainsStatement">
+								<xsd:annotation>
+									<xsd:documentation>
+										<ELFFieldNumber>NL</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+
+			<!-- Long-Term Capital Loss Carryover -->
+			<xsd:element name="LTCapitalLossCarryoverAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Long-term capital loss carryover</Description>
+						<LineNumber>14(h)</LineNumber>
+					    	<ELFFieldNumber>1820</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Net Long-Term Capital Gain or Loss -->
+			<xsd:element name="NetLTCapitalGainOrLossAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Net long-term capital gain or loss</Description>
+						<LineNumber>15(h)</LineNumber>
+					    	<ELFFieldNumber>1835</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		<!-- Part III Summary -->
+
+			<!-- Combined Net Gain/Loss -->
+			<xsd:element name="NetSTAndLTCapitalGainOrLossAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Combined Net Gain/Loss</Description>
+						<LineNumber>16</LineNumber>
+					    	<ELFFieldNumber>2400</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Both Gains Indicator  -->
+			<xsd:element name="STAndLTGainInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Both gains indicator</Description>
+						<LineNumber>17</LineNumber>
+					    	<ELFFieldNumber>2420 2440</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- 28% Rate Gain Worksheet -->
+			<xsd:element name="RateGainWrkshtAmt" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>28% Rate gain worksheet</Description>
+						<LineNumber>18</LineNumber>
+					    	<ELFFieldNumber>2460</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="USAmountType">
+								<xsd:attribute name="referenceDocumentId" type="IdListType" />
+								<xsd:attribute name="referenceDocumentName" type="StringType" fixed="UnrealizedAppreciationOfCollectiblesStatement">
+									<xsd:annotation>
+										<xsd:documentation>
+											<ELFFieldNumber>NL</ELFFieldNumber>
+										</xsd:documentation>
+									</xsd:annotation>
+								</xsd:attribute>
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+			</xsd:element>
+
+			<!-- Unrecaptured Section 1250 Gain Worksheet -->
+			<xsd:element name="UnrcptrSect1250GainWrkshtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Unrecaptured section 1250 gain worksheet</Description>
+						<LineNumber>19</LineNumber>
+					    	<ELFFieldNumber>2480</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Zero or Blank Indicator -->
+			<xsd:element name="ZeroOrBlankInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Zero or blank indicator</Description>
+						<LineNumber>20</LineNumber>
+						<ELFFieldNumber>2500 2520</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Allowable Loss -->
+			<xsd:element name="AllowableLossAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Allowable loss</Description>
+						<LineNumber>21</LineNumber>
+					    	<ELFFieldNumber>2540</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Qualified Dividends Indicator -->
+			<xsd:element name="QualifiedDividendsInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified dividends indicator</Description>
+						<LineNumber>22</LineNumber>
+					    	<ELFFieldNumber>2560 2580</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Type for Parts I and II Capital Gains and Losses -->
+	<xsd:complexType name="CapitalGainAndLossType">
+		<xsd:sequence>
+
+			<!-- Total Sales Price -->
+			<xsd:element name="TotalSalesPrice" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total sales price</Description>
+						<LineNumber>1(e), 2(e), 3(e), 8(e), 9(e), or 10(e)</LineNumber>
+				    	<ELFFieldNumber>0020 0050 0050 0880 0890 NL0915</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Total Cost or Other Basis -->
+			<xsd:element name="TotalCostOrOtherBasis" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total cost or other basis</Description>
+						<LineNumber>1(f), 2(f), 3(f), 8(f), 9(f), or 10(f)</LineNumber>
+				    	<ELFFieldNumber>0030 0060 NL0055 NL0882 0900 0910</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Total Adjustments To Gain Or Loss Amount -->
+			<xsd:element name="TotAdjustmentsToGainOrLossAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total adjustments to gain or loss</Description>
+						<LineNumber>1(g), 2(g), 3(g), 8(g), 9(g), or 10(g)</LineNumber>
+					    <ELFFieldNumber>0040 0070 0050 NL0887 0900 0920</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Total Gain or Loss -->
+			<xsd:element name="TotalGainOrLossAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total gain or loss</Description>
+						<LineNumber>1(h), 2(h), 3(h), 8(h), 9(h), or 10(h)</LineNumber>
+					    <ELFFieldNumber>NL NL NL 0890 0910 NL0930</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>
+

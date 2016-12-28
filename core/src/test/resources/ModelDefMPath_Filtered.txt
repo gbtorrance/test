@@ -1,0 +1,15 @@
+/TestRoot
+/TestRoot/@AttribA
+/TestRoot/!S
+/TestRoot/!S/B
+/TestRoot/!S/B/!S
+/TestRoot/!S/B/!S/BA
+/TestRoot/!S/B/!S/BB
+/TestRoot/!S/!C}2
+/TestRoot/!S/!C}2/D
+/TestRoot/!S/!C}2/D/!S
+/TestRoot/!S/!C}2/D/!S/E
+/TestRoot/!S/!C}2/D/!S/!S
+/TestRoot/!S/!C}2/D/!S/!S/W
+/TestRoot/!S/!C}2/!C}2
+/TestRoot/!S/!C}2/!C}2/X

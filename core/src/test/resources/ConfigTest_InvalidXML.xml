@@ -1,0 +1,5 @@
+<Config>
+
+	<BadXMLElement>This element is not closed properly</BadXMLElement_BAD>
+
+</Config>

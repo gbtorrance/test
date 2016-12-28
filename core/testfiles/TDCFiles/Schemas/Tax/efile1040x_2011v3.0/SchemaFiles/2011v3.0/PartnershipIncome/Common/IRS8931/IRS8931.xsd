@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.irs.gov/efile" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Corporate Income Tax Schema - IRS Form 8931</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+
+	<!-- ================================================================== -->
+	<!-- ======================  IRS Form 8931 =============================== -->
+	<!-- ================================================================== -->
+	<xsd:element name="IRS8931">
+		<xsd:annotation>
+			<xsd:documentation>IRS Form 8931</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS8931Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS8931">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="IRS8931Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for Form 8931</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+			<!--Qualified Costs (repeating group) -->
+			<xsd:element name="QualifiedCosts" minOccurs="0" maxOccurs="unbounded">
+				<xsd:complexType>
+					<xsd:sequence>
+			
+			<!-- Employee security training/ background checks -->
+						<xsd:element name="EmplTrngChcks" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Employee security training/ background checks</Description>
+									<LineNumber>1a</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+<!-- Limitation/ prevention of access to controls -->
+						<xsd:element name="LimitPrvntAccess" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Limitation/ prevention of access to controls</Description>
+									<LineNumber>1b</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--  Tagging/ locking tank valves/ chemical additives -->
+						<xsd:element name="TagLockValve" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Tagging/ locking tank valves/ chemical additives</Description>
+									<LineNumber>1c</LineNumber>					</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+			<!-- Perimeter protection -->
+						<xsd:element name="PerimProtect" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Perimeter Protection</Description>
+									<LineNumber>1d</LineNumber>						<LineNumber>Line 1</LineNumber>
+									</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+			<!-- Security lighting/ cameras/ recording equipment/ intrusion detection sensors -->
+						<xsd:element name="LghtngCmraRcrdSnsrs" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description># Security lighting/ cameras/ recording equipment/ intrusion detection sensors</Description>
+									<LineNumber>1e</LineNumber>						<LineNumber>Line 2</LineNumber>
+									</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+			<!-- Computer/ computer network security -->
+						<xsd:element name="CompSec" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Computer/ computer network security</Description>
+									<LineNumber>1f</LineNumber>						<LineNumber>Line 3</LineNumber>
+									</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+			 <!-- Security vulnerability assessment -->
+						<xsd:element name="SecAssmnt" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Security Vulnerability Assessment</Description>
+									<LineNumber> 1g</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+			 <!-- Site security plan -->
+						<xsd:element name="SiteSecPlan" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Site Security Plan</Description>
+									<LineNumber>1h</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+<!--Total of Qualified Costs -->
+						<xsd:element name="TotQlfyCost" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Add Lines 1a Thru 1h</Description>
+									<LineNumber>2</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+<!--Percent of Qualified Costs  -->
+						<xsd:element name="PctQlfyCost" type="USAmountType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Multiply line 2 by 30%</Description>
+									<LineNumber>3</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+<!--Max Credit: Subtract total credit claimed in prior 5 years from $100,000 -->
+						<xsd:element name="MaxCrPr5Yrs" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Max Credit: Subtract total credit claimed in prior 5 years from $100,000</Description>
+									<LineNumber>4</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:simpleContent>
+									<xsd:extension base="USAmountType">
+										<xsd:attribute name="referenceDocumentId" type="IdListType"/>
+										<xsd:attribute name="referenceDocumentName" type="StringType" fixed="ControlledGroupMembersStatement"/>
+									</xsd:extension>
+								</xsd:simpleContent>
+							</xsd:complexType>
+						</xsd:element>
+<!--Enter smaller of line 3 or 4 -->
+						<xsd:element name="AgriChemSecCr" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Enter smaller of line 3 or 4</Description>
+									<LineNumber>5</LineNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:simpleContent>
+									<xsd:extension base="USAmountType">
+										<xsd:attribute name="referenceDocumentId" type="IdListType"/>
+										<xsd:attribute name="referenceDocumentName" type="StringType" fixed="ControlledGroupMembersStatement"/>
+									</xsd:extension>
+								</xsd:simpleContent>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+<!-- End of repeating group -->
+
+	<!-- Add amounts on line 5 (up to $2,000,000) -->
+			<xsd:element name="TotAllFclts" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Add amounts on line 5 (up to $2,000,000)</Description>
+						<LineNumber>6</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+	<!--  Credits from partnerships, S corporations, estates and trusts -->
+			<xsd:element name="PrtshpSCorpEstCr" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Credits from partnerships, S corporations, estates and trusts</Description>
+						<LineNumber>7</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+	<!--  Add lines 6 and 7  -->
+			<xsd:element name="ReportCr" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Add lines 6 and 7</Description>
+						<LineNumber>8</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+	
+	<!--  Amount allocated to beneficiaries of estates and trusts -->
+			<xsd:element name="EstTrSecCr" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+							<Description>Amount allocated to beneficiaries of estates and trusts</Description>
+							<LineNumber>9</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+	
+	<!--  Estates and trusts: subtract line 9 from line 8  -->
+			<xsd:element name="EstTrCr" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Estates and trusts: subtract line 9 from line 8</Description>
+						<LineNumber>10</LineNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

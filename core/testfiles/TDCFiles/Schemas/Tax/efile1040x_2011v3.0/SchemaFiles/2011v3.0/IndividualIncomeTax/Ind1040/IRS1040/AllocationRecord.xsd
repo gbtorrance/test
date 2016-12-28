@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.irs.gov/efile" xmlns="http://www.irs.gov/efile" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>
+			 <Description>IRS e-file Individual Income Tax Schema - Allocation Record</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+
+	<!-- =================================== -->
+	<!-- ======== Allocation Record ======== -->
+	<!-- =================================== -->
+
+	<xsd:element name="AllocationRecord">
+		<xsd:annotation>
+			<xsd:documentation>Allocation Record</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="AllocationRecordType">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="AllocationRecord">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="AllocationRecordType">
+		<xsd:annotation>
+			<xsd:documentation>Content model for Allocation Record</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+			<!-- Allocation Information Group -->
+			<xsd:element name="AllocationInformationGrp" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+
+
+				<!-- Total Allocation Group -->
+				<xsd:element name="TotalAllocationGrp" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+
+							<!-- Wages Amount -->
+							<xsd:element name="WagesAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Wages Amount</Description>
+										<ELFFieldNumber>0010</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Taxable Interest Amount -->
+							<xsd:element name="TaxableInterestAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Taxable Interest Amount</Description>
+										<ELFFieldNumber>0040</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Ordinary Dividends Amount -->
+							<xsd:element name="OrdinaryDividendsAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Ordinary Dividends Amount</Description>
+										<ELFFieldNumber>0070</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- State Local Income Tax Refund Amount -->
+							<xsd:element name="StateLocalIncomeTaxRefundAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>State Local Income Tax Refund Amount</Description>
+										<ELFFieldNumber>0100</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Captial Gain Loss Amount -->
+							<xsd:element name="CaptialGainLossAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Captial Gain Loss Amount</Description>
+										<ELFFieldNumber>0130</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Taxable Pensions Amount -->
+							<xsd:element name="TaxablePensionsAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Taxable Pensions Amount</Description>
+										<ELFFieldNumber>0160</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Rental Real EST Amount -->
+							<xsd:element name="RentalRealESTAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Rental Real EST Amount</Description>
+										<ELFFieldNumber>0190</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Total Other Income Amount -->
+							<xsd:element name="TotalOtherIncomeAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Total Other Income Amount</Description>
+										<ELFFieldNumber>0220</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Total Income Amount -->
+							<xsd:element name="TotalIncomeAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Total Income Amount</Description>
+										<ELFFieldNumber>0250</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Overpaid Amount -->
+							<xsd:element name="OverpaidAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Overpaid Amount</Description>
+										<ELFFieldNumber>0280</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+
+
+				<!-- Husband Allocation Group -->
+				<xsd:element name="HusbandAllocationGrp" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+
+							<!-- Wages Amount -->
+							<xsd:element name="WagesAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Wages Amount</Description>
+										<ELFFieldNumber>0020</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Taxable Interest Amount -->
+							<xsd:element name="TaxableInterestAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Taxable Interest Amount</Description>
+										<ELFFieldNumber>0050</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Ordinary Dividends Amount -->
+							<xsd:element name="OrdinaryDividendsAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Ordinary Dividends Amount</Description>
+										<ELFFieldNumber>0080</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- State Local Income Tax Refund Amount -->
+							<xsd:element name="StateLocalIncomeTaxRefundAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>State Local Income Tax Refund Amount</Description>
+										<ELFFieldNumber>0110</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Captial Gain Loss Amount -->
+							<xsd:element name="CaptialGainLossAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Captial Gain Loss Amount</Description>
+										<ELFFieldNumber>0140</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Taxable Pensions Amount -->
+							<xsd:element name="TaxablePensionsAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Taxable Pensions Amount</Description>
+										<ELFFieldNumber>0170</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Rental Real EST Amount -->
+							<xsd:element name="RentalRealESTAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Rental Real EST Amount</Description>
+										<ELFFieldNumber>0200</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Total Other Income Amount -->
+							<xsd:element name="TotalOtherIncomeAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Total Other Income Amount</Description>
+										<ELFFieldNumber>0230</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Total Income Amount -->
+							<xsd:element name="TotalIncomeAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Total Income Amount</Description>
+										<ELFFieldNumber>0260</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Overpaid Amount -->
+							<xsd:element name="OverpaidAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Overpaid Amount</Description>
+										<ELFFieldNumber>0290</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+
+
+				<!-- Wife Allocation Group -->
+				<xsd:element name="WifeAllocationGrp" minOccurs="0">
+					<xsd:complexType>
+						<xsd:sequence>
+
+							<!-- Wages Amount -->
+							<xsd:element name="WagesAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Wages Amount</Description>
+										<ELFFieldNumber>0030</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Taxable Interest Amount -->
+							<xsd:element name="TaxableInterestAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Taxable Interest Amount</Description>
+										<ELFFieldNumber>0060</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Ordinary Dividends Amount -->
+							<xsd:element name="OrdinaryDividendsAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Ordinary Dividends Amount</Description>
+										<ELFFieldNumber>0090</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- State Local Income Tax Refund Amount -->
+							<xsd:element name="StateLocalIncomeTaxRefundAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>State Local Income Tax Refund Amount</Description>
+										<ELFFieldNumber>0120</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Captial Gain Loss Amount -->
+							<xsd:element name="CaptialGainLossAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Captial Gain Loss Amount</Description>
+										<ELFFieldNumber>0150</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Taxable Pensions Amount -->
+							<xsd:element name="TaxablePensionsAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Taxable Pensions Amount</Description>
+										<ELFFieldNumber>0180</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Rental Real EST Amount -->
+							<xsd:element name="RentalRealESTAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Rental Real EST Amount</Description>
+										<ELFFieldNumber>0210</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Total Other Income Amount -->
+							<xsd:element name="TotalOtherIncomeAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Total Other Income Amount</Description>
+										<ELFFieldNumber>0240</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Total Income Amount -->
+							<xsd:element name="TotalIncomeAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Total Income Amount</Description>
+										<ELFFieldNumber>0270</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+							<!-- Overpaid Amount -->
+							<xsd:element name="OverpaidAmt" type="USAmountType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Overpaid Amount</Description>
+										<ELFFieldNumber>0300</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+
+						</xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>
+
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

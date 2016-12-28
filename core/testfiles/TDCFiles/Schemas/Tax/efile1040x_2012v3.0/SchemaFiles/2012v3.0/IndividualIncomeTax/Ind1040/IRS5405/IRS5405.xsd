@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Schema - IRS Form 5405 First-Time Homebuyer Credit and Repayment of the Credit</Description>
+			<TaxYear>2012</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>September 7, 2012</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+
+	<!--==================================================================-->
+	<!--========================= IRS Form 5405 ==========================-->
+	<!--==================================================================-->
+
+	<xsd:element name="IRS5405">
+		<xsd:annotation>
+			<xsd:documentation>IRS Form 5405</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS5405Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS5405">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="referenceDocumentId" type="IdListType">
+						<xsd:annotation>
+							<xsd:documentation>List of document ID's of forms, schedules, supporting info. etc. attached to this form</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="referenceDocumentName" type="StringType" fixed="BinaryAttachment">
+						<xsd:annotation>
+							<xsd:documentation>
+								<ELFFieldNumber>NL</ELFFieldNumber>
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="IRS5405Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS Form 5405</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+			<!--Social Security Number -->
+			<xsd:element name="SSN" type="SSNType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Social Security Number</Description>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Part I - General Infomation-->
+			<!--Home Qualifying For Credit Address -->
+			<!--
+			<xsd:element name="HomeQualifyingForCreditAddress" type="USAddressType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Qualifying For Credit Address</Description>
+						<LineNumber>A</LineNumber>
+						<ELFFieldNumber>0020 0030 0040 0050</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Asset Ownership Purchased Date -->
+			<!--
+			<xsd:element name="AssetOwnershipPurchasedDt" type="DateType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Asset Ownership Purchased Date</Description>
+						<LineNumber>B</LineNumber>
+						<ELFFieldNumber>0060</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--
+			<xsd:element name="BindingContractBeforeCutOffInd" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Binding Contract Before Cut Off Indicator</Description>
+						<LineNumber>C</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:simpleContent>
+						<xsd:extension base="BooleanType">
+							<xsd:attribute name="referenceDocumentId" type="IdListType"/>
+							<xsd:attribute name="referenceDocumentName" type="StringType" fixed="BinaryAttachment">
+								<xsd:annotation>
+									<xsd:documentation>
+										<ELFFieldNumber>NL</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+						</xsd:extension>
+					</xsd:simpleContent>
+				</xsd:complexType>
+			</xsd:element>
+			-->
+			<!--Home Purchase Military Extraction Duty Indicator -->
+			<!--
+			<xsd:element name="HomePurchaseMilitaryExtDutyInd" type="CheckboxType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Purchase Military Extraction Duty Indicator</Description>
+						<LineNumber>D</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Purchase From Relative Indicator -->
+			<!--
+			<xsd:element name="HomePurchaseFromRelativeInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Purchase From Relative Indicator</Description>
+						<LineNumber>E</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Claimed Year Before Purchase Indicator -->
+			<!--
+			<xsd:element name="HmByrCrClaimedYrBfrPurchaseInd" type="CheckboxType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Claimed Year Before Purchase Indicator</Description>
+						<LineNumber>F</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+
+			<!--Part II - Credit-->
+			<!--Home Purchase Price Amount -->
+			<!--
+			<xsd:element name="HomePurchasePriceAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Purchase Price Amount</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Purchased Price Allowable Percentage Amount -->
+			<!--
+			<xsd:element name="HmByrCrPrchsPriceAllwblePctAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Purchased Price Allowable Percentage Amount</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:choice>
+			-->
+				<!--First Time Home Buyer Indicator -->
+				<!--
+				<xsd:element name="FirstTimeHomeBuyerInd" type="CheckboxType" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>First Time Home Buyer Indicator</Description>
+							<LineNumber>3</LineNumber>
+							<ELFFieldNumber>NL</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+				-->
+				<!--Long Term Resident Home Buyer Indicator -->
+				<!--
+				<xsd:element name="LongTermResidentHomeBuyerInd" minOccurs="0">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Long Term Resident Home Buyer Indicator</Description>
+							<LineNumber>3</LineNumber>
+							<ELFFieldNumber>NL</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+					<xsd:complexType>
+						<xsd:simpleContent>
+							<xsd:extension base="CheckboxType">
+								<xsd:attribute name="referenceDocumentId" type="IdListType"/>
+								<xsd:attribute name="referenceDocumentName" type="StringType" fixed="BinaryAttachment"/>
+							</xsd:extension>
+						</xsd:simpleContent>
+					</xsd:complexType>
+				</xsd:element>
+			</xsd:choice>
+			-->
+			<!--Asset Ownership Share Amount -->
+			<!--
+			<xsd:element name="AssetOwnershipShareAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Asset Ownership Share Amount</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Maximum Allowable Amount -->
+			<!--
+			<xsd:element name="HomeBuyerCrMaxAllwblAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Maximum Allowable Amount</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Modified Adjusted Gross Income Amount -->
+			<!--
+			<xsd:element name="HomeBuyerModifiedAGIAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Modified Adjusted Gross Income Amount</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Income Limit Amount -->
+			<!--
+			<xsd:element name="HomeBuyerCreditIncomeLimitAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Income Limit Amount</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer MAGI Lesser Maximum Amount -->
+			<!--
+			<xsd:element name="HomeBuyerMAGILessMaxAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer MAGI Lesser Maximum Amount</Description>
+						<LineNumber>7</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Allowed Real Time -->
+			<!--
+			<xsd:element name="HomeBuyerCreditAllowedRt" type="RatioType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Allowed Ratio</Description>
+						<LineNumber>8</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Adjustment Allowable Amount -->
+			<!--
+			<xsd:element name="HomeBuyerCreditAdjAllwbleAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Adjustment Allowable Amount</Description>
+						<LineNumber>9</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+			<!--Home Buyer Credit Amount -->
+			<!--
+			<xsd:element name="HomeBuyerCreditAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Buyer Credit Amount</Description>
+						<LineNumber>10</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			-->
+
+			<!--Part III - Disposition or Change of Main Home for Which Credit Was Claimed-->
+			<xsd:element name="DispositionChangeMainHome" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<!--Change Of Main Home Date -->
+						<xsd:element name="ChangeOfMainHomeDt" type="DateType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Change Of Main Home Date</Description>
+									<LineNumber>11</LineNumber>
+									<ELFFieldNumber>0130</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Sold Military Extraction Duty Indicator -->
+						<xsd:element name="HomeSoldMilitaryExtDutyInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Sold Military Extended Duty Indicator</Description>
+									<LineNumber>12</LineNumber>
+									<ELFFieldNumber>NL</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Sold To Unrelated Person With Gain Indicator -->
+						<xsd:element name="HomeSoldToUnrltPrsnWithGainInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Sold To Unrelated Person With Gain Indicator</Description>
+									<LineNumber>13a</LineNumber>
+									<ELFFieldNumber>0140</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Sold To Unrelated Person No Gain Indicator -->
+						<xsd:element name="HomeSoldToUnrltPrsnNoGainInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Sold To Unrelated Person No Gain Indicator</Description>
+									<LineNumber>13b</LineNumber>
+									<ELFFieldNumber>0150</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Sold To Related Person Indicator -->
+						<xsd:element name="HomeSoldToRelatedPersonInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Sold To Related Person Indicator</Description>
+									<LineNumber>13c</LineNumber>
+									<ELFFieldNumber>0160</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Converted To Business Use Indicator -->
+						<xsd:element name="HomeConvertedToBusinessUseInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Converted To Business Use Indicator</Description>
+									<LineNumber>13d</LineNumber>
+									<ELFFieldNumber>0170</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Transferred To Spouse Or Ex Spouse -->
+						<xsd:element name="HomeTransferredToSpouseGrp" minOccurs="0">
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:element name="HomeTransferredToSpouseOrExInd" type="CheckboxType" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>
+												<Description>Home Transferred To Spouse Or Ex Spouse Indicator</Description>
+												<LineNumber>13e</LineNumber>
+												<ELFFieldNumber>0180</ELFFieldNumber>
+											</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="SpouseOrExName" type="PersonNameType" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>
+												<Description>Spouse Or Ex Spouse Name</Description>
+												<LineNumber>13e</LineNumber>
+												<ELFFieldNumber>0185</ELFFieldNumber>
+											</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+						<!--Home Destroyed Condemn New Home Indicator -->
+						<xsd:element name="HomeDestrCondemnNewHomeInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Destroyed Condemn New Home Indicator</Description>
+									<LineNumber>13f</LineNumber>
+									<ELFFieldNumber>0190</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Destroyed Condemn No New Home Indicator -->
+						<xsd:element name="HomeDestrCondemnNoNewHomeInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Destroyed Condemn No New Home Indicator</Description>
+									<LineNumber>13g</LineNumber>
+									<ELFFieldNumber>0200</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<!--Home Buyer Credit Taxpayer Deceased Indicator -->
+						<xsd:element name="HomeBuyerCrTaxpayerDeceasedInd" type="CheckboxType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Home Buyer Credit Taxpayer Deceased Indicator</Description>
+									<LineNumber>13h</LineNumber>
+									<ELFFieldNumber>0210</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<!--Part IV - Repayment Of Credit-->
+			<!-- First Time Home Buyer Credit Claimed Amount -->
+			<xsd:element name="FirstTimeHmByrCrClaimedAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>First Time Home Buyer Credit Claimed Amount</Description>
+						<LineNumber>14</LineNumber>
+						<ELFFieldNumber>0220</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- First Time Home Buyer Credit Repaid Amount -->
+			<xsd:element name="FirstTimeHmByrCrRepaidPYRetAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>First Time Home Buyer Credit Repaid Amount</Description>
+						<LineNumber>15</LineNumber>
+						<ELFFieldNumber>0230</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- First Time Home Buyer Net Credit Claimed Amount -->
+			<xsd:element name="FirstTimeHmByrNetCrClaimedAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>First Time Home Buyer Net Credit Claimed Amount</Description>
+						<LineNumber>16</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Line 17 (Gain on sale of main home).  Use value of Part V Line 25 (GainOnSaleOfMainHomeAmt) -->
+			<!-- ELFFieldNumber  NL  ELFFieldNumber -->
+
+			<!-- First Time Home Buyer Repayment Amount -->
+			<xsd:element name="FirstTimeHmByrRepaymentAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>First Time Home Buyer Repayment Amount</Description>
+						<LineNumber>18</LineNumber>
+						<ELFFieldNumber>0240</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!--Part V - Form 5405 Gain or (Loss) Worksheet -->
+			<!-- Selling Price of Home Proceeds Award Amount -->
+			<xsd:element name="SellingPriceOfHomeProcAwardAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Selling Price of Home Proceeds Award Amount</Description>
+						<LineNumber>19</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- Selling Expenses of Home Amountt -->
+			<xsd:element name="SellingOfHomeExpensesAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Selling Expenses of Home Amount</Description>
+						<LineNumber>20</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- Realized Amount of Sale of Home -->
+			<xsd:element name="MortgSbsdySaleOfHmRealizedAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Realized Amount of Sale of Home</Description>
+						<LineNumber>21</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- Adjusted Basis of Home Sold Amount -->
+			<xsd:element name="AdjustedBasisOfHomeSoldAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Adjusted Basis of Home Sold Amount</Description>
+						<LineNumber>22</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- First Time Home Buyer Net Credit Repaid in Prior Year Return Amount -->
+			<xsd:element name="FirstTimeHmByrNetCrRpdPYRetAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>First Time Home Buyer Net Credit Repaid in Prior Year Return Amount</Description>
+						<LineNumber>23</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- Adjusted Basis for Repayment of Credit Amount -->
+			<xsd:element name="AdjustedBasisForRepymtCrAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Adjusted Basis for Repayment of Credit Amount</Description>
+						<LineNumber>24</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!-- Gain on Sale of Main Home Amount -->
+			<xsd:element name="GainOnSaleOfMainHomeAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Gain on Sale of Main Home Amount</Description>
+						<LineNumber>25</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

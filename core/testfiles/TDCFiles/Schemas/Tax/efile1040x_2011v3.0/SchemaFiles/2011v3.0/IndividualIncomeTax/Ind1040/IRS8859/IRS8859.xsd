@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Schema - IRS Form 8859</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+	
+	<!--==================================================================-->
+	<!--========================= IRS Form 8859 ==========================-->
+	<!--==================================================================-->
+	
+	<xsd:element name="IRS8859">
+		<xsd:annotation>
+			<xsd:documentation>IRS Form 8859</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS8859Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS8859">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:complexType name="IRS8859Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS8859</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+		
+			<!-- Part I - General Information -->
+			<!-- Home Qualifying For Credit Address -->
+			<xsd:element name="HomeQualifyingForCreditAddress" type="USAddressType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Home Qualifying For Credit Address</Description>
+						<LineNumber>A</LineNumber>
+						<ELFFieldNumber>0020 0030 0040 0050</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Lot Number -->
+			<xsd:element name="LotNum" type="IntegerType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Lot Number</Description>
+						<LineNumber>B</LineNumber>
+						<ELFFieldNumber>0060</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Square Number -->
+			<xsd:element name="SquareNum" type="AlphaNumericType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Square Number</Description>
+						<LineNumber>C</LineNumber>
+						<ELFFieldNumber>0070</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Closing Date -->
+			<xsd:element name="ClosingDt" type="DateType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Closing Date</Description>
+						<LineNumber>D</LineNumber>
+						<ELFFieldNumber>0080</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Part II - Tentative Credit -->
+			<!-- District Of Columbia Home Buyer Maximum Allowable Amount -->
+			<xsd:element name="DCHmByrMaximumAllowableAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Maximum Allowable Amount</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>0090</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- District Of Columbia Home Buyer Modified Adjusted Gross Income Amount -->
+			<xsd:element name="DCHmByrModifiedAGIAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Modified Adjusted Gross Income Amount</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>0100</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- District Of Columbia Home Buyer Modified Adjusted Gross Income Lesser Maximum Amount -->
+			<xsd:element name="DCHmByrMAGILessMaximumAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Modified Adjusted Gross Income Lesser Maximum Amount</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>0130</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- District Of Columbia Home Buyer Credit Allowed Rate -->
+			<xsd:element name="DCHmByrCreditAllowedRt" type="RatioType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Credit Allowed Rate</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>0140</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- District Of Columbia Home Buyer Calculated Home Credit Amount -->
+			<xsd:element name="DCHmByrCalculatedHomeCreditAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Calculated Home Credit Amount</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>0150</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- District Of Columbia Home Buyer Tentative Credit Amount -->
+			<xsd:element name="DCHmByrTentativeCreditAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Tentative Credit Amount</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>0160</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Part III - Credit Carryforward From Prior Year -->
+			<!-- District Of Columbia Home Buyer Credit Carryforward Prior Year Amount -->
+			<xsd:element name="DCHmByrCreditCarryforwardPYAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Credit Carryforward Prior Year Amount</Description>
+						<LineNumber>7</LineNumber>
+						<ELFFieldNumber>0170</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<!-- Part IV - Tax Liability Limit -->
+			<!-- Tax Liability Limitation From Tax Liability Limit Worksheet Amount -->
+			<xsd:element name="TaxLiabLmtFromCrLmtWrkshtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Tax Liability Limitation From Tax Liability Limit Worksheet Amount</Description>
+						<LineNumber>8</LineNumber>
+						<ELFFieldNumber>0200</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<!-- District Of Columbia Home Buyer Current Year Credit Amount -->
+			<xsd:element name="DCHmByrCurrentYearCreditAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Current Year Credit Amount</Description>
+						<LineNumber>9</LineNumber>
+						<ELFFieldNumber>0230</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+			<!-- District Of Columbia Home Buyer Credit Carryforward Next Year Amount -->
+			<xsd:element name="DCHmByrCreditCfwdNextYearAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>District Of Columbia Home Buyer Credit Carryforward Next Year Amount</Description>
+						<LineNumber>10</LineNumber>
+						<ELFFieldNumber>0240</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

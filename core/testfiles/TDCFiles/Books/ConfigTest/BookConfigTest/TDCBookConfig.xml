@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+
+	<BookName>ConfigTest</BookName>
+	<BookDescription>Book used for testing configuration</BookDescription>
+
+	<DocTypes>
+		<DocType>
+			<DocTypeName>DocType1</DocTypeName>
+			<MinPerTestCase>0</MinPerTestCase>
+			<MaxPerTestCase>2</MaxPerTestCase>
+		</DocType>
+		<DocType>
+			<DocTypeName>DocType2</DocTypeName>
+			<MinPerTestCase>0</MinPerTestCase>
+			<MaxPerTestCase>1</MaxPerTestCase>
+		</DocType>
+		<DocType>
+			<DocTypeName>DocType3</DocTypeName>
+		</DocType>
+	</DocTypes>
+	
+	<PageStructs>
+		<PageStruct>
+			<PageStructName>Default</PageStructName>
+			<DocIDRows>
+				<Row type="case-num">
+					<Label>Test Case Number</Label>
+				</Row>
+				<Row type="set-name">
+					<Label>Test Set Name (optional)</Label>
+				</Row>
+			</DocIDRows>
+			<NodeColumnCount>12</NodeColumnCount>
+			<NodeColumnWidth>500</NodeColumnWidth>
+		</PageStruct>
+	</PageStructs>
+	
+	<Pages>
+		<Page>
+			<PageName>Page1</PageName>
+			<ModelAddress>/ConfigTest/SchemaConfigTest/ModelConfigTest</ModelAddress>
+			<DocTypeName>DocType1</DocTypeName>
+			<PageStructName>Default</PageStructName>
+		</Page>	
+		<Page>
+			<PageName>Page2</PageName>
+			<ModelAddress>/ConfigTest/SchemaConfigTest/ModelConfigTest</ModelAddress>
+			<DocTypeName>DocType2</DocTypeName>
+			<PageStructName>Default</PageStructName>
+		</Page>
+		<Page>
+			<PageName>Page3</PageName>
+			<ModelAddress>/ConfigTest/SchemaConfigTest/ModelConfigTest</ModelAddress>
+			<DocTypeName>DocType3</DocTypeName>
+			<PageStructName>Default</PageStructName>
+		</Page>	
+		<Page>
+			<PageName>Page4</PageName>
+			<ModelAddress>/ConfigTest/SchemaConfigTest/ModelConfigTest</ModelAddress>
+			<DocTypeName>DocType1</DocTypeName>  <!-- use one that was used before --> 
+			<PageStructName>Default</PageStructName>
+		</Page>	
+	</Pages>
+
+	<DefaultStyle>
+		<FontName>Calibri</FontName>
+		<FontHeight>11</FontHeight>
+	</DefaultStyle>
+	<NodeHeaderStyle>
+		<Bold>true</Bold>
+	</NodeHeaderStyle>
+	<DefaultNodeDetailStyle>
+		<ShrinkToFit>true</ShrinkToFit>
+	</DefaultNodeDetailStyle>
+	<DefaultNodeStyle>
+		<FontHeight>10</FontHeight>
+	</DefaultNodeStyle>
+	<ParentNodeStyle>
+		<FontName>Arial</FontName>
+		<FontHeight>12</FontHeight>
+		<ColorRGB>0 0 255</ColorRGB> <!-- blue -->
+		<Italic>false</Italic>
+	</ParentNodeStyle>
+	<AttribNodeStyle>
+		<FontHeight>13</FontHeight>
+		<FillColorRGB>34 97 13</FillColorRGB> <!-- green -->
+	</AttribNodeStyle>
+	<CompositorNodeStyle>
+		<FontName>Times New Roman</FontName>
+		<ColorRGB>64 64 64</ColorRGB> <!-- dark gray -->
+		<Italic>true</Italic>
+	</CompositorNodeStyle>
+	<ChoiceMarkerNodeStyle>
+		<FontName>Calibri</FontName>
+		<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+	</ChoiceMarkerNodeStyle>
+	
+</Config>

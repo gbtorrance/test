@@ -1,0 +1,30 @@
+<Config>
+	<StringElement>TestString</StringElement>
+	
+	<IntElement>1</IntElement>
+	
+	<DoubleElement>1.5</DoubleElement>
+	
+	<BooleanElementTrue>true</BooleanElementTrue>
+	<BooleanElementYes>yes</BooleanElementYes>
+	<BooleanElementFalse>false</BooleanElementFalse>
+	<BooleanElementNo>no</BooleanElementNo>
+	
+	<RepeatingElement>First instance</RepeatingElement>
+	<RepeatingElement>Second instance</RepeatingElement>
+	<RepeatingElement>Third instance</RepeatingElement>
+	
+	<EmptyElement/>
+	
+	<ParentElement>
+		<ChildElement>Child</ChildElement>
+	</ParentElement>
+	
+	<CellStyle>
+		<FontName>Calibri</FontName>
+		<FontHeight>11</FontHeight>
+		<ColorRGB>50 100 150</ColorRGB>
+		<Italic>true</Italic>
+	</CellStyle>
+
+</Config>

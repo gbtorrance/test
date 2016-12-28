@@ -1,0 +1,244 @@
+<Config>
+
+	<TestEmpty>
+		<Evaluator type="empty"/>
+	</TestEmpty>
+	
+	<TestSpaceDefaultSizeOne>
+		<Evaluator type="space"/>
+	</TestSpaceDefaultSizeOne>
+	
+	<TestSpaceSizeZero>
+		<Evaluator type="space" size="0"/>
+	</TestSpaceSizeZero>
+	
+	<TestSpaceSizeOne>
+		<Evaluator type="space" size="1"/>
+	</TestSpaceSizeOne>
+	
+	<TestSpaceSizeFive>
+		<Evaluator type="space" size="5"/>
+	</TestSpaceSizeFive>
+	
+	<TestLiteral>
+		<Evaluator type="literal">Abc123</Evaluator>
+	</TestLiteral>
+	
+	<TestLiteralEmpty>
+		<Evaluator type="literal"></Evaluator>
+	</TestLiteralEmpty>
+	
+	<TestCompound>
+		<Evaluator type="compound">
+			<Evaluator type="literal">Ab</Evaluator>
+			<Evaluator type="empty"/>
+			<Evaluator type="literal">Cd</Evaluator>
+			<Evaluator type="space" size="1"/>
+			<Evaluator type="literal">-</Evaluator>
+			<Evaluator type="space" size="1"/>
+			<Evaluator type="literal">Ef</Evaluator>
+		</Evaluator>
+	</TestCompound>
+
+	<TestCompoundNoMatch>
+		<Evaluator type="compound">
+			<Evaluator type="empty"/>
+			<Evaluator type="literal"></Evaluator>
+			<Evaluator type="empty"/>
+		</Evaluator>
+	</TestCompoundNoMatch>
+
+	<TestCompoundEmpty>
+		<Evaluator type="compound">
+		</Evaluator>
+	</TestCompoundEmpty>
+
+	<TestCoalesce>
+		<Evaluator type="coalesce">
+			<Evaluator type="empty"/>
+			<Evaluator type="space" size="0"/>
+			<Evaluator type="literal">Ab</Evaluator>
+			<Evaluator type="empty"/>
+			<Evaluator type="literal">Cd</Evaluator>
+			<Evaluator type="empty"/>
+		</Evaluator>
+	</TestCoalesce>
+	
+	<TestCoalesceNoMatch>
+		<Evaluator type="coalesce">
+			<Evaluator type="empty"/>
+			<Evaluator type="literal"></Evaluator>
+			<Evaluator type="empty"/>
+		</Evaluator>
+	</TestCoalesceNoMatch>
+	
+	<TestCoalesceEmpty>
+		<Evaluator type="coalesce">
+		</Evaluator>
+	</TestCoalesceEmpty>
+	
+	<TestValuePlusStyle>
+		<Evaluator type="value-plus-style">
+			<Evaluator type="literal">Abc</Evaluator>
+			<Style>
+				<FontName>Calibri</FontName>
+				<FontHeight>11</FontHeight>
+			</Style>
+		</Evaluator>
+	</TestValuePlusStyle>
+
+	<TestValuePlusStyleInsideIf>
+		<Evaluator type="if" operator="equals">
+			<If>
+				<Evaluator type="literal">Ab</Evaluator>
+				<Evaluator type="literal">Ab</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="value-plus-style">
+					<Evaluator type="literal">Then block</Evaluator>
+					<Style>
+						<FontName>Calibri</FontName>
+						<FontHeight>11</FontHeight>
+					</Style>
+				</Evaluator>
+			</Then>
+		</Evaluator>
+	</TestValuePlusStyleInsideIf>
+
+	<TestValuePlusStyleInsideCoalesce>
+		<Evaluator type="coalesce">
+			<Evaluator type="empty"/>
+			<Evaluator type="literal"></Evaluator>
+			<Evaluator type="value-plus-style">
+				<Evaluator type="literal">Inside coalesce</Evaluator>
+				<Style>
+					<FontName>Calibri</FontName>
+					<FontHeight>11</FontHeight>
+				</Style>
+			</Evaluator>
+		</Evaluator>
+	</TestValuePlusStyleInsideCoalesce>
+
+	<TestIfEqualsOperatorEquals>
+		<Evaluator type="if" operator="equals">
+			<If>
+				<Evaluator type="literal">Abc</Evaluator>
+				<Evaluator type="literal">Abc</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="literal">Then block</Evaluator>
+			</Then>
+			<Else>
+				<Evaluator type="literal">Else block</Evaluator>
+			</Else>
+		</Evaluator>
+	</TestIfEqualsOperatorEquals>
+	
+	<TestIfEqualsOperatorNotEquals>
+		<Evaluator type="if" operator="equals">
+			<If>
+				<Evaluator type="literal">Abc</Evaluator>
+				<Evaluator type="literal">Def</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="literal">Then block</Evaluator>
+			</Then>
+			<Else>
+				<Evaluator type="literal">Else block</Evaluator>
+			</Else>
+		</Evaluator>
+	</TestIfEqualsOperatorNotEquals>
+	
+	<TestIfNotEqualsOperatorEquals>
+		<Evaluator type="if" operator="not-equals">
+			<If>
+				<Evaluator type="literal">Abc</Evaluator>
+				<Evaluator type="literal">Abc</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="literal">Then block</Evaluator>
+			</Then>
+			<Else>
+				<Evaluator type="literal">Else block</Evaluator>
+			</Else>
+		</Evaluator>
+	</TestIfNotEqualsOperatorEquals>
+	
+	<TestIfNotEqualsOperatorNotEquals>
+		<Evaluator type="if" operator="not-equals">
+			<If>
+				<Evaluator type="literal">Abc</Evaluator>
+				<Evaluator type="literal">Def</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="literal">Then block</Evaluator>
+			</Then>
+			<Else>
+				<Evaluator type="literal">Else block</Evaluator>
+			</Else>
+		</Evaluator>
+	</TestIfNotEqualsOperatorNotEquals>
+	
+	<TestIfEqualsOperatorNotEqualsAndNoElseBlock>
+		<Evaluator type="if" operator="equals">
+			<If>
+				<Evaluator type="literal">Abc</Evaluator>
+				<Evaluator type="literal">Def</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="literal">Then block</Evaluator>
+			</Then>
+		</Evaluator>
+	</TestIfEqualsOperatorNotEqualsAndNoElseBlock>
+	
+	<TestIfInsideIf>
+		<Evaluator type="if" operator="equals">
+			<If>
+				<Evaluator type="literal">Abc</Evaluator>
+				<Evaluator type="literal">Abc</Evaluator>
+			</If>
+			<Then>
+				<Evaluator type="if" operator="equals">
+					<If>
+						<Evaluator type="literal">Abc</Evaluator>
+						<Evaluator type="literal">Def</Evaluator>
+					</If>
+					<Then>
+						<Evaluator type="literal">Inner Then block</Evaluator>
+					</Then>
+					<Else>
+						<Evaluator type="literal">Inner Else block</Evaluator>
+					</Else>
+				</Evaluator>
+			</Then>
+			<Else>
+				<Evaluator type="literal">Outer Else block</Evaluator>
+			</Else>
+		</Evaluator>
+	</TestIfInsideIf>
+	
+	<TestVariableCurrent>
+		<Evaluator type="variable" source="current">TEST_VARIABLE</Evaluator>
+	</TestVariableCurrent>
+
+	<TestVariablePrevious>
+		<Evaluator type="variable" source="previous">TEST_VARIABLE</Evaluator>
+	</TestVariablePrevious>
+
+	<TestPropertyCurrent>
+		<Evaluator type="property" source="current">MaxOccurs</Evaluator>
+	</TestPropertyCurrent>
+
+	<TestPropertyPrevious>
+		<Evaluator type="property" source="previous">MaxOccurs</Evaluator>
+	</TestPropertyPrevious>
+
+	<TestPropertyFullMethodName>
+		<Evaluator type="property" source="current">getMaxOccurs</Evaluator>
+	</TestPropertyFullMethodName>
+
+	<TestPropertyLowerCaseFirstLetter>
+		<Evaluator type="property" source="current">maxOccurs</Evaluator>
+	</TestPropertyLowerCaseFirstLetter>
+
+</Config>

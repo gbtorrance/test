@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>OldTest_Cust</ModelName>
+	<ModelDescription>Old Test Model -- customized</ModelDescription>
+	<SchemaRootFile>OldTest.xsd</SchemaRootFile>
+	<SchemaRootElementName>TestRoot</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://com.gurtz.tdc/test</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>false</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	<DefaultOccursCount>5</DefaultOccursCount>
+
+	<Customizer>
+		<FileNamePrefix>Customizer_</FileNamePrefix>
+		<DefaultStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultStyle>
+		<DefaultNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultNodeStyle>
+		<ParentNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>0 0 255</ColorRGB> <!-- blue -->
+			<Italic>false</Italic>
+		</ParentNodeStyle>
+		<AttribNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>34 97 13</ColorRGB> <!-- green -->
+		</AttribNodeStyle>
+		<CompositorNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>64 64 64</ColorRGB> <!-- dark gray -->
+			<Italic>true</Italic>
+		</CompositorNodeStyle>
+		<ChoiceMarkerNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+			<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+		</ChoiceMarkerNodeStyle>
+		<HeaderRowCount>2</HeaderRowCount>
+		<NodeColumnCount>12</NodeColumnCount>
+		<NodeColumnWidth>500</NodeColumnWidth>
+		<ReadOccursCountOverrideFromVariable>OCCURS_COUNT_OVERRIDE</ReadOccursCountOverrideFromVariable>
+		<AllowMinMaxInvalidOccursCountOverride>false</AllowMinMaxInvalidOccursCountOverride>
+		
+		<NodeDetailColumns>
+			<Column>
+				<HeaderLabels>
+					<Label>Occurs</Label>
+					<Label>Override</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="variable" source="previous">OCCURS_COUNT_OVERRIDE</Evaluator>
+				</InitializeFromPrevious>
+				<Read>
+					<StoreValueWithVariableName>OCCURS_COUNT_OVERRIDE</StoreValueWithVariableName>
+				</Read>
+			</Column>
+		</NodeDetailColumns>
+		
+	</Customizer>
+	
+</Config>

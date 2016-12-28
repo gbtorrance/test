@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Schema - IRS Form 8930</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+	<!--==================================================================-->
+	<!--============================== IRS8930 =============================-->
+	<!--==================================================================-->
+	<xsd:element name="IRS8930">
+		<xsd:annotation>
+			<xsd:documentation>IRS Form 8930</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS8930Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS8930">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="IRS8930Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS8930</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<!--Qualified Disaster Qualified Taxpayer Name -->
+			<xsd:element name="QlfyDsstrQualifiedTaxpayerName" type="PersonNameType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Qualified Taxpayer Name</Description>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Qualified Taxpayer SSN -->
+			<xsd:element name="QlfyDsstrQualifiedTaxpayerSSN" type="SSNType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Qualified Taxpayer SSN</Description>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Part I Qualified Disaster Recovery Assistance Distributions From Retirement Plans (other than IRAs) -->
+			<!--Qualified Disaster Distribution Prior Year Retirement Plan Taxable Amount -->
+			<xsd:element name="QlfyDsstrDistriRtrPlnTxblAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Prior Year Retirement Plan Taxable Amount for Qualified Disaster Distribution</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year Sum Net and Repayments Amount -->
+			<xsd:element name="QlfyDsstrPYSumNetAndRepymtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Summary Net and Repayments Amount</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>0194</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year Distribution Retirement Plan Taxable Amount -->
+			<xsd:element name="QlfyDsstrPYSmDistriRtrPlnTxAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Distribution Retirement Plan Taxable Amount</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>0178</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year Net Taxable Repayment Amount -->
+			<xsd:element name="QlfyDsstrPYNetTxblRepymtAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Net Taxable Repayment Amount</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>0186</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Total Repayments Amount -->
+			<xsd:element name="QlfyDsstrTotalRepaymentsAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Total Repayments Amount</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>0190</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year Net Plus Total Repayment Amount -->
+			<xsd:element name="QlfyDsstrPYNetPlusTotRepymtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Net Plus Total Repayment Amount</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Distribution Subject To Tax Amount -->
+			<xsd:element name="QlfyDsstrDistriSubjectToTaxAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Distribution Subject To Tax Amount</Description>
+						<LineNumber>7</LineNumber>
+						<ELFFieldNumber>0200</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Part II Qualified Disaster Recovery Assistance Distributions From Traditional, SEP, SIMPLE, and Roth IRAs-->
+			<!-- Prior Year amount for Qualified Disaster Distributions Recovery Assistance from Traditional, SEP, SIMPLE, and Roth IRAs -->
+			<xsd:element name="QlfyDsstrDistriIRASEPTxblAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Prior Year amount for Qualified Disaster Distributions Recovery Assistance from Traditional, SEP, SIMPLE, and Roth IRAs</Description>
+						<LineNumber>8</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year IRASEP Sm Net Repayment Amount -->
+			<xsd:element name="QlfyDsstrPYIRASEPSmNetRpymtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year IRA SEP Summary Net Repayment Amount</Description>
+						<LineNumber>9</LineNumber>
+						<ELFFieldNumber>0324</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year IRA SEP Distribution Taxable Amount -->
+			<xsd:element name="QlfyDsstrPYIRASEPSmDistriTxAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Distribution IRA SEP Taxable Amount</Description>
+						<LineNumber>10</LineNumber>
+						<ELFFieldNumber>0308</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year Net Total Repayment Amount -->
+			<xsd:element name="QlfyDsstrPYNetTotRepymtAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Net Total Repayment Amount</Description>
+						<LineNumber>11</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster IRA SEP Total Repayment Amount -->
+			<xsd:element name="QlfyDsstrIRASEPTotalRepymtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster IRA SEP Total Repayment Amount</Description>
+						<LineNumber>12</LineNumber>
+						<ELFFieldNumber>0320</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster Prior Year Net Summary Total Repayment Amount -->
+			<xsd:element name="QlfyDsstrPYNetSumTotRepymtAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster Prior Year Net Summary Total Repayment Amount</Description>
+						<LineNumber>13</LineNumber>
+						<ELFFieldNumber>NL</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<!--Qualified Disaster IRA SEP Subject To Tax Amount -->
+			<xsd:element name="QlfyDsstrIRASEPSubjectToTaxAmt" type="USAmountNNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Qualified Disaster IRA SEP Subject To Tax Amount</Description>
+						<LineNumber>14</LineNumber>
+						<ELFFieldNumber>0330</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

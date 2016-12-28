@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>Test1</ModelName>
+	<ModelDescription>Test Model 1</ModelDescription>
+	<SchemaRootFile>Test.xsd</SchemaRootFile>
+	<SchemaRootElementName>Test1</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://com.gurtz.tdc/test</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>true</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+</Config>

@@ -1,0 +1,13 @@
+/TestVarious
+/TestVarious/!S
+/TestVarious/!S/ElementFixed
+/TestVarious/!S/ElementDefault
+/TestVarious/!S/ElementNotFixedOrDefault
+/TestVarious/!S/ElementEmpty1
+/TestVarious/!S/ElementEmpty2
+/TestVarious/!S/ElementWithAttribute
+/TestVarious/!S/ElementWithAttribute/@AttributeFixed
+/TestVarious/!S/ElementWithAttribute/@MyAttributeFixed
+/TestVarious/!S/ElementWithAttribute/@MyAttributeDefault
+/TestVarious/!S/ElementString1
+/TestVarious/!S/ElementString2

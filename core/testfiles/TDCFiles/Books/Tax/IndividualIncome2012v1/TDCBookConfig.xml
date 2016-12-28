@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+
+	<BookName>2012_Individual_Income_01</BookName>
+	<BookDescription>TY2012 Individual Income Tax -- version 1</BookDescription>
+	<BookTemplateFile>../../BookTemplateWithMacros.xlsm</BookTemplateFile>
+
+	<DocTypes>
+		<DocType>
+			<DocTypeName>TaxReturn</DocTypeName>
+			<MinPerTestCase>1</MinPerTestCase>
+			<MaxPerTestCase>1</MaxPerTestCase>
+		</DocType>
+		<DocType>
+			<DocTypeName>Manifest</DocTypeName>
+			<MinPerTestCase>0</MinPerTestCase>
+			<MaxPerTestCase>1</MaxPerTestCase>
+		</DocType>
+	</DocTypes>
+	
+	<PageStructs>
+		<PageStruct>
+			<PageStructName>Primary</PageStructName>
+			<DocIDRows>
+				<Row type="case-num">
+					<Label>Test Case Number</Label>
+				</Row>
+				<Row type="set-name">
+					<Label>Test Set Name (optional)</Label>
+				</Row>
+				<Row type="case-variable" variableName="SUBMISSION_ID">
+					<Label>Submission ID</Label>
+				</Row>
+				<Row type="doc-variable" variableName="NOTE_1">
+					<Label>Note 1</Label>
+				</Row>
+				<Row type="doc-variable" variableName="NOTE_2">
+					<Label>Note 2</Label>
+				</Row>
+			</DocIDRows>
+			<NodeDetailColumns>
+				<Column>
+					<HeaderLabels><Label>Description</Label></HeaderLabels>
+					<Width>5000</Width>
+					<Style><FillColorRGB>208 204 204</FillColorRGB></Style>
+					<ReadFromVariable>DESCRIPTION_FROM_SCHEMA</ReadFromVariable>
+				</Column>
+				<Column>
+					<HeaderLabels><Label>Line</Label><Label>Num</Label></HeaderLabels>
+					<Width>2000</Width>
+					<ReadFromVariable>LINE_NUMBER_FROM_SCHEMA</ReadFromVariable>
+				</Column>
+				<Column>
+					<HeaderLabels><Label>Form</Label><Label>Num</Label></HeaderLabels>
+					<Width>2000</Width>
+					<ReadFromVariable>FORM_NUMBER_FROM_SCHEMA</ReadFromVariable>
+				</Column>
+				<Column>
+					<HeaderLabels><Label>Data</Label><Label>Type</Label></HeaderLabels>
+					<Width>3000</Width>
+					<Style><Italic>true</Italic></Style>
+					<ReadFromVariable>DATA_TYPE_FROM_SCHEMA</ReadFromVariable>
+				</Column>
+				<Column>
+					<HeaderLabels><Label>Occurs</Label></HeaderLabels>
+					<Width>2000</Width>
+					<ReadFromProperty>DispOccurs</ReadFromProperty>
+				</Column>
+			</NodeDetailColumns>
+			<NodeColumnCount>25</NodeColumnCount>
+			<NodeColumnWidth>500</NodeColumnWidth>
+			<HeaderRowCount>2</HeaderRowCount>
+			<NodeHeaderLabels>
+				<Label>Document Structure</Label>
+			</NodeHeaderLabels>
+		</PageStruct>
+		<PageStruct>
+			<PageStructName>Minimal</PageStructName>
+			<DocIDRows>
+				<Row type="case-num">
+					<Label>Test Case Number</Label>
+				</Row>
+				<Row type="set-name">
+					<Label>Test Set Name (optional)</Label>
+				</Row>
+			</DocIDRows>
+			<NodeColumnCount>25</NodeColumnCount>
+			<NodeColumnWidth>500</NodeColumnWidth>
+			<HeaderRowCount>2</HeaderRowCount>
+			<NodeHeaderLabels>
+				<Label>Document Structure</Label>
+			</NodeHeaderLabels>
+		</PageStruct>
+	</PageStructs>
+	
+	<Pages>
+		<Page>
+			<PageName>1040A</PageName>
+			<ModelAddress>/Tax/efile1040x_2012v3.0/Model_1040A</ModelAddress>
+			<DocTypeName>TaxReturn</DocTypeName>
+			<PageStructName>Primary</PageStructName>
+		</Page>	
+		<Page>
+			<PageName>1040EZ</PageName>
+			<ModelAddress>/Tax/efile1040x_2012v3.0/Model_1040EZ</ModelAddress>
+			<DocTypeName>TaxReturn</DocTypeName>
+			<PageStructName>Minimal</PageStructName>
+		</Page>
+		<Page>
+			<PageName>Manifest</PageName>
+			<ModelAddress>/Tax/efile1040x_2012v3.0/Model_Manifest</ModelAddress>
+			<DocTypeName>Manifest</DocTypeName>
+			<PageStructName>Minimal</PageStructName>
+		</Page>
+	</Pages>
+	
+	<DefaultStyle>
+		<FontName>Calibri</FontName>
+		<FontHeight>11</FontHeight>
+	</DefaultStyle>
+	<NodeHeaderStyle>
+		<Bold>true</Bold>
+	</NodeHeaderStyle>
+	<DefaultNodeStyle/>
+	<ParentNodeStyle>
+		<ColorRGB>0 0 255</ColorRGB> <!-- blue -->
+	</ParentNodeStyle>
+	<AttribNodeStyle>
+		<ColorRGB>34 97 13</ColorRGB> <!-- green -->
+	</AttribNodeStyle>
+	<CompositorNodeStyle>
+		<ColorRGB>64 64 64</ColorRGB> <!-- dark gray -->
+		<Italic>true</Italic>
+	</CompositorNodeStyle>
+	<ChoiceMarkerNodeStyle>
+		<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+	</ChoiceMarkerNodeStyle>
+	<OccurMarkerNodeStyle>
+		<FontHeight>10</FontHeight>
+		<ColorRGB>107 36 12</ColorRGB> <!-- brown -->
+	</OccurMarkerNodeStyle>
+	<NodeDetailHeaderStyle>
+		<Bold>true</Bold>
+	</NodeDetailHeaderStyle>
+	<DefaultNodeDetailStyle/>
+	
+	<Tasks>
+		<Task id="export" type="default-export">
+			<ExportRoot>../../../../Temp/ExportRoot</ExportRoot>
+		</Task>
+	</Tasks>
+	
+</Config>

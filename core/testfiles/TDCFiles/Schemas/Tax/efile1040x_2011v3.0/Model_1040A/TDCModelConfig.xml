@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>2011v3.0_1040A</ModelName>
+	<ModelDescription>TY2011 v3.0 1040A</ModelDescription>
+	<SchemaRootFile>2011v3.0/IndividualIncomeTax/Ind1040A/Return1040A.xsd</SchemaRootFile>
+	<SchemaRootElementName>Return</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://www.irs.gov/efile</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>true</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	<DefaultOccursCount>3</DefaultOccursCount>
+	
+	<SchemaExtractors>
+		<SchemaExtractor type="dataType">
+			<VariableName>DATA_TYPE_FROM_SCHEMA</VariableName>
+		</SchemaExtractor>
+		<SchemaExtractor type="dataType">
+			<VariableName>DATA_TYPE_FROM_SCHEMA_VERBOSE</VariableName>
+			<Verbose>true</Verbose>
+		</SchemaExtractor>
+		<SchemaExtractor type="annotation">
+			<Annotations>
+				<Annotation>
+					<XPathExpression>//*[local-name()='Description'][1]</XPathExpression>
+					<VariableName>DESCRIPTION_FROM_SCHEMA</VariableName>
+				</Annotation>
+				<Annotation>
+					<XPathExpression>//*[local-name()='LineNumber'][1]</XPathExpression>
+					<VariableName>LINE_NUMBER_FROM_SCHEMA</VariableName>
+				</Annotation>
+				<Annotation>
+					<XPathExpression>//*[local-name()='FormNumber'][1]</XPathExpression>
+					<VariableName>FORM_NUMBER_FROM_SCHEMA</VariableName>
+				</Annotation>
+			</Annotations>
+		</SchemaExtractor>
+	</SchemaExtractors>
+
+	<Customizer>
+		<FileNamePrefix>Customizer_</FileNamePrefix>
+		<DefaultStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultStyle>
+		<NodeHeaderStyle>
+			<Bold>true</Bold>
+		</NodeHeaderStyle>
+		<DefaultNodeStyle/>
+		<ParentNodeStyle>
+			<ColorRGB>0 0 255</ColorRGB> <!-- blue -->
+		</ParentNodeStyle>
+		<AttribNodeStyle>
+			<ColorRGB>34 97 13</ColorRGB> <!-- green -->
+		</AttribNodeStyle>
+		<CompositorNodeStyle>
+			<ColorRGB>64 64 64</ColorRGB> <!-- dark gray -->
+			<Italic>true</Italic>
+		</CompositorNodeStyle>
+		<ChoiceMarkerNodeStyle>
+			<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+		</ChoiceMarkerNodeStyle>
+		<NodeDetailHeaderStyle>
+			<Bold>true</Bold>
+		</NodeDetailHeaderStyle>
+		<DefaultNodeDetailStyle>
+			<ShrinkToFit>true</ShrinkToFit>
+		</DefaultNodeDetailStyle>
+		<HeaderRowCount>2</HeaderRowCount>
+		<NodeHeaderLabels>
+			<Label>Model Structure</Label>
+		</NodeHeaderLabels>
+		<NodeColumnCount>25</NodeColumnCount>
+		<NodeColumnWidth>500</NodeColumnWidth>
+		<ReadOccursCountOverrideFromVariable>OCCURS_COUNT_OVERRIDE</ReadOccursCountOverrideFromVariable>
+		<AllowMinMaxInvalidOccursCountOverride>false</AllowMinMaxInvalidOccursCountOverride>
+		<NodeDetailColumns>
+		
+			<Column>
+				<HeaderLabels>
+					<Label>Occurs</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="property" source="current">DispOccurs</Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="if" operator="equals">
+						<If>
+							<Evaluator type="property" source="current">DispOccurs</Evaluator>
+							<Evaluator type="property" source="previous">DispOccurs</Evaluator>
+						</If>
+						<Then>
+							<Evaluator type="property" source="current">DispOccurs</Evaluator>
+						</Then>
+						<Else>
+							<Evaluator type="value-plus-style">
+								<Evaluator type="compound">
+									<Evaluator type="property" source="current">DispOccurs</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="literal">[prev:</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="property" source="previous">DispOccurs</Evaluator>
+									<Evaluator type="literal">]</Evaluator>
+								</Evaluator>
+								<Style>
+									<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+								</Style>
+							</Evaluator>
+						</Else>
+					</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+			<Column>
+				<HeaderLabels>
+					<Label>Occurs</Label>
+					<Label>Override</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="variable" source="previous">OCCURS_COUNT_OVERRIDE</Evaluator>
+				</InitializeFromPrevious>
+				<Read>
+					<StoreValueWithVariableName>OCCURS_COUNT_OVERRIDE</StoreValueWithVariableName>
+				</Read>
+			</Column>
+			
+			<Column>
+				<HeaderLabels>
+					<Label>Prev</Label>
+					<Label>Seq</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="property" source="previous">RowOffset</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+
+			<Column>
+				<HeaderLabels>
+					<Label>Description</Label>
+				</HeaderLabels>
+				<Width>5000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="variable" source="current">DESCRIPTION_FROM_SCHEMA</Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="if" operator="equals">
+						<If>
+							<Evaluator type="variable" source="current">DESCRIPTION_FROM_SCHEMA</Evaluator>
+							<Evaluator type="variable" source="previous">DESCRIPTION_FROM_SCHEMA</Evaluator>
+						</If>
+						<Then>
+							<Evaluator type="variable" source="current">DESCRIPTION_FROM_SCHEMA</Evaluator>
+						</Then>
+						<Else>
+							<Evaluator type="value-plus-style">
+								<Evaluator type="compound">
+									<Evaluator type="variable" source="current">DESCRIPTION_FROM_SCHEMA</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="literal">[prev:</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="variable" source="previous">DESCRIPTION_FROM_SCHEMA</Evaluator>
+									<Evaluator type="literal">]</Evaluator>
+								</Evaluator>
+								<Style>
+									<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+								</Style>
+							</Evaluator>
+						</Else>
+					</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+			<Column>
+				<HeaderLabels>
+					<Label>Custom</Label>
+					<Label>Description</Label>
+				</HeaderLabels>
+				<Width>5000</Width>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="variable" source="previous">CUSTOM_DESCRIPTION</Evaluator>
+				</InitializeFromPrevious>
+				<Read>
+					<StoreValueWithVariableName>CUSTOM_DESCRIPTION</StoreValueWithVariableName>
+				</Read>
+			</Column>
+			
+			<Column>
+				<HeaderLabels>
+					<Label>Line Num</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="variable" source="current">LINE_NUMBER_FROM_SCHEMA</Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="if" operator="equals">
+						<If>
+							<Evaluator type="variable" source="current">LINE_NUMBER_FROM_SCHEMA</Evaluator>
+							<Evaluator type="variable" source="previous">LINE_NUMBER_FROM_SCHEMA</Evaluator>
+						</If>
+						<Then>
+							<Evaluator type="variable" source="current">LINE_NUMBER_FROM_SCHEMA</Evaluator>
+						</Then>
+						<Else>
+							<Evaluator type="value-plus-style">
+								<Evaluator type="compound">
+									<Evaluator type="variable" source="current">LINE_NUMBER_FROM_SCHEMA</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="literal">[prev:</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="variable" source="previous">LINE_NUMBER_FROM_SCHEMA</Evaluator>
+									<Evaluator type="literal">]</Evaluator>
+								</Evaluator>
+								<Style>
+									<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+								</Style>
+							</Evaluator>
+						</Else>
+					</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+			<Column>
+				<HeaderLabels>
+					<Label>Custom</Label>
+					<Label>Line Num</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="variable" source="previous">CUSTOM_LINE_NUM</Evaluator>
+				</InitializeFromPrevious>
+				<Read>
+					<StoreValueWithVariableName>CUSTOM_LINE_NUM</StoreValueWithVariableName>
+				</Read>
+			</Column>
+
+			<Column>
+				<HeaderLabels>
+					<Label>Form Num</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="variable" source="current">FORM_NUMBER_FROM_SCHEMA</Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="if" operator="equals">
+						<If>
+							<Evaluator type="variable" source="current">FORM_NUMBER_FROM_SCHEMA</Evaluator>
+							<Evaluator type="variable" source="previous">FORM_NUMBER_FROM_SCHEMA</Evaluator>
+						</If>
+						<Then>
+							<Evaluator type="variable" source="current">FORM_NUMBER_FROM_SCHEMA</Evaluator>
+						</Then>
+						<Else>
+							<Evaluator type="value-plus-style">
+								<Evaluator type="compound">
+									<Evaluator type="variable" source="current">FORM_NUMBER_FROM_SCHEMA</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="literal">[prev:</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="variable" source="previous">FORM_NUMBER_FROM_SCHEMA</Evaluator>
+									<Evaluator type="literal">]</Evaluator>
+								</Evaluator>
+								<Style>
+									<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+								</Style>
+							</Evaluator>
+						</Else>
+					</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+			<Column>
+				<HeaderLabels>
+					<Label>Custom</Label>
+					<Label>Form Num</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="variable" source="previous">CUSTOM_FORM_NUM</Evaluator>
+				</InitializeFromPrevious>
+				<Read>
+					<StoreValueWithVariableName>CUSTOM_FORM_NUM</StoreValueWithVariableName>
+				</Read>
+			</Column>
+			
+			<Column>
+				<HeaderLabels>
+					<Label>Data Type</Label>
+				</HeaderLabels>
+				<Width>4000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA</Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="if" operator="equals">
+						<If>
+							<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA</Evaluator>
+							<Evaluator type="variable" source="previous">DATA_TYPE_FROM_SCHEMA</Evaluator>
+						</If>
+						<Then>
+							<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA</Evaluator>
+						</Then>
+						<Else>
+							<Evaluator type="value-plus-style">
+								<Evaluator type="compound">
+									<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="literal">[prev:</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="variable" source="previous">DATA_TYPE_FROM_SCHEMA</Evaluator>
+									<Evaluator type="literal">]</Evaluator>
+								</Evaluator>
+								<Style>
+									<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+								</Style>
+							</Evaluator>
+						</Else>
+					</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+			<Column>
+				<HeaderLabels>
+					<Label>Verbose</Label>
+					<Label>Data Type</Label>
+				</HeaderLabels>
+				<Width>4000</Width>
+				<Style>
+					<FillColorRGB>208 204 204</FillColorRGB> <!-- gray -->
+				</Style>
+				<InitializeAsNew>
+					<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA_VERBOSE</Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="if" operator="equals">
+						<If>
+							<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA_VERBOSE</Evaluator>
+							<Evaluator type="variable" source="previous">DATA_TYPE_FROM_SCHEMA_VERBOSE</Evaluator>
+						</If>
+						<Then>
+							<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA_VERBOSE</Evaluator>
+						</Then>
+						<Else>
+							<Evaluator type="value-plus-style">
+								<Evaluator type="compound">
+									<Evaluator type="variable" source="current">DATA_TYPE_FROM_SCHEMA_VERBOSE</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="literal">[prev:</Evaluator>
+									<Evaluator type="space" size="1"/>
+									<Evaluator type="variable" source="previous">DATA_TYPE_FROM_SCHEMA_VERBOSE</Evaluator>
+									<Evaluator type="literal">]</Evaluator>
+								</Evaluator>
+								<Style>
+									<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+								</Style>
+							</Evaluator>
+						</Else>
+					</Evaluator>
+				</InitializeFromPrevious>
+			</Column>
+			<Column>
+				<HeaderLabels>
+					<Label>Custom</Label>
+					<Label>Data Type</Label>
+				</HeaderLabels>
+				<Width>2000</Width>
+				<InitializeAsNew>
+					<Evaluator type="literal"></Evaluator>
+				</InitializeAsNew>
+				<InitializeFromPrevious>
+					<Evaluator type="variable" source="previous">CUSTOM_DATA_TYPE</Evaluator>
+				</InitializeFromPrevious>
+				<Read>
+					<StoreValueWithVariableName>CUSTOM_DATA_TYPE</StoreValueWithVariableName>
+				</Read>
+			</Column>
+
+		</NodeDetailColumns>
+	</Customizer>
+	
+</Config>

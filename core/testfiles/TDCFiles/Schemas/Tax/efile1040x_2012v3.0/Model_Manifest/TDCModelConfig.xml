@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>Manifest</ModelName>
+	<ModelDescription>Manifest Model</ModelDescription>
+	<SchemaRootFile>2012v3.0/Common/efileAttachments.xsd</SchemaRootFile>
+	<SchemaRootElementName>StateSubmissionManifest</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://www.irs.gov/efile</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>true</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	<DefaultOccursCount>1</DefaultOccursCount>
+</Config>

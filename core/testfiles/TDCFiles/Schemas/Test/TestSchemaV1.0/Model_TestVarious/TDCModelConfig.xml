@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>TestVarious</ModelName>
+	<ModelDescription>Test Model for testing various uncommon situations</ModelDescription>
+	<SchemaRootFile>TestVarious.xsd</SchemaRootFile>
+	<SchemaRootElementName>TestVarious</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://com.gurtz.tdc/test</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>true</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	
+	<SchemaExtractors>
+		<SchemaExtractor type="dataType">
+			<VariableName>DATA_TYPE_FROM_SCHEMA</VariableName>
+		</SchemaExtractor>
+		<SchemaExtractor type="dataType">
+			<VariableName>DATA_TYPE_FROM_SCHEMA_VERBOSE</VariableName>
+			<Verbose>true</Verbose>
+		</SchemaExtractor>
+		<SchemaExtractor type="annotation">
+			<Annotations>
+				<Annotation>
+					<XPathExpression>//*[local-name()='Description'][1]</XPathExpression>
+					<VariableName>DESCRIPTION_FROM_SCHEMA</VariableName>
+				</Annotation>
+				<Annotation>
+					<XPathExpression>//*[local-name()='LineNumber'][1]</XPathExpression>
+					<VariableName>LINE_NUMBER_FROM_SCHEMA</VariableName>
+				</Annotation>
+				<Annotation>
+					<XPathExpression>//*[local-name()='FormNumber'][1]</XPathExpression>
+					<VariableName>FORM_NUMBER_FROM_SCHEMA</VariableName>
+				</Annotation>
+			</Annotations>
+		</SchemaExtractor>
+	</SchemaExtractors>
+	
+</Config>

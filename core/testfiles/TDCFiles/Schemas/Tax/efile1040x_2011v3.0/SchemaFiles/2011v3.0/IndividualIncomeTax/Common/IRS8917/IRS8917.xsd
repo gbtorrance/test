@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Individual Income Tax Schema - IRS 8917 Tuition and Fees Deduction</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+
+	<!-- ======================================================================== -->
+	<!-- ======================  IRS 8917 ============ ============================= -->
+	<!-- ======================================================================== -->
+
+	<xsd:element name="IRS8917">
+		<xsd:annotation>
+			<xsd:documentation>IRS 8917 Tuition and Fees Deduction</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS8917Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS8917">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="IRS8917Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS 8917</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			
+			<xsd:element name="Student" maxOccurs="100">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="StudentName">
+							<xsd:complexType>
+								<xsd:sequence>						
+									<xsd:element name="PersonFirstName" type="PersonFirstNameType">
+										<xsd:annotation>
+											<xsd:documentation>
+												<Description>First Name</Description>
+												<LineNumber>1a</LineNumber>
+												<ELFFieldNumber>0010 0060 0110</ELFFieldNumber>
+											</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>														
+									<xsd:element name="PersonLastName" type="PersonLastNameType">
+										<xsd:annotation>
+											<xsd:documentation>
+												<Description>Last Name</Description>
+												<LineNumber>1a</LineNumber>
+												<ELFFieldNumber>0020 0070 0120</ELFFieldNumber>
+											</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>						
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>	
+					
+						<xsd:element name="StudentNameControl" type="PersonNameControlType">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Student Name Control</Description>
+									<LineNumber>1a</LineNumber>
+									<ELFFieldNumber>0030 0080 0130</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						
+						<xsd:element name="StudentSSN" type="SSNType">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Student SSN</Description>
+									<LineNumber>1b</LineNumber>
+									<ELFFieldNumber>0040 0090 0140</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+	
+						<xsd:element name="QualifiedExpensesAmt" type="USAmountType">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Qualified Expenses Amount</Description>
+									<LineNumber>1c</LineNumber>
+									<ELFFieldNumber>0050 0100 0150</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>					
+									
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+						
+			<!-- Total Qualified Expenses Amount -->
+			<xsd:element name="TotalQualifiedExpensesAmt" type="USAmountType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total Qualified Expenses Amount</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>0160</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+			
+			<!-- Total Income Amount -->
+			<xsd:element name="TotalIncomeAmt" type="USAmountType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total Income Amount</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>0170</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Tuition and Fees Ded Other Credit Amount -->
+			<xsd:element name="TuitionAndFeesDedOthCreditAmt" type="USAmountType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Tuition and Fees Ded Other Credit Amount</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>0180</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+
+			<xsd:element name="TuitionAndFeesDedIncmLessCrAmt" type="USAmountType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Tuition and Fees Ded Incm Less Credit Amount</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>0190</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>			
+
+			<xsd:element name="TuitionAndFeesDedMoreLimitInd" type="BooleanType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Tuition and Fees Ded More Limit Indication</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>0200 0210</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>						
+
+			<xsd:element name="TuitionAndFeesDedAmt" type="USAmountType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Tuition and Fees Ded Amount</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>0220</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

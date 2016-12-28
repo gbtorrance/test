@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.irs.gov/efile" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified">
+ <xsd:annotation>
+    <xsd:documentation>
+       <Description>IRS e-file Individual Income Tax Schema - Additional Car And Truck Expenses Schedule</Description>
+       <Purpose>If you use more than one vehicle during the year, attach your own schedule with the information requested in Schedule C, Part IV for each additional vehicle</Purpose>
+       <TaxYear>2011</TaxYear>
+       <MaturityLevel>Final Release</MaturityLevel>
+       <ReleaseDate>October 25, 2011</ReleaseDate>
+    </xsd:documentation>
+ </xsd:annotation>
+
+<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+
+
+	<!-- ====================================================================== -->
+	<!-- =================  Additional Car And Truck Expenses Schedule  ======= -->
+	<!-- ====================================================================== -->
+
+	<xsd:element name="AddnlCarAndTruckExpensesSch">
+		<xsd:annotation>
+			<xsd:documentation>Additional Car And Truck Expenses Schedule</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="AddnlCarAndTruckExpensesSchType">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="AdditionalCarAndTruckExpensesSchedule">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="AddnlCarAndTruckExpensesSchType">
+		<xsd:annotation>
+			<xsd:documentation>Content model for Additional Car And Truck Expenses Schedule</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="AddnlCarAndTruckExpenses" type="AddnlCarAndTruckExpensesType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="AddnlCarAndTruckExpensesType">
+		<xsd:annotation>
+			<xsd:documentation>Content model for Additional Car And Truck Expenses Schedule</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+			<!-- Date Vehicle Placed In Service -->
+			<xsd:element name="VehiclePlacedInServiceDT" type="DateType" minOccurs="0"/>
+
+			<!-- Business Miles -->
+			<xsd:element name="BusinessMiles" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="IntegerType">
+						<xsd:totalDigits value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+
+			<!-- Commuting Miles -->
+			<xsd:element name="CommutingMiles" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="IntegerType">
+						<xsd:totalDigits value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+
+			<!-- Other Miles -->
+			<xsd:element name="OtherMiles" minOccurs="0">
+				<xsd:simpleType>
+					<xsd:restriction base="IntegerType">
+						<xsd:totalDigits value="12"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<!-- Available For Off-Duty Hours -->
+			<xsd:element name="AvailableForOffDutyHoursInd" type="BooleanType" minOccurs="0"/>
+
+			<!-- Another Vehicle -->
+			<xsd:element name="AnotherVehicleInd" type="BooleanType" minOccurs="0"/>
+
+			<!-- Evidence To Support Deduction -->
+			<xsd:element name="EvidenceToSupportDeductionInd" type="BooleanType" minOccurs="0"/>
+
+			<!-- Evidence Written -->
+			<xsd:element name="EvidenceWrittenInd" type="BooleanType" minOccurs="0"/>
+
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

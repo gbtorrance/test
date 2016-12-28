@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Individual Income Tax Schema - IRS 9465 Installment Agreement Request</Description>
+			<TaxYear>2012</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>September 7, 2012</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+	
+	<!-- ======================================================================== -->
+	<!-- ============================ IRS 9465 ================================== -->
+	<!-- ======================================================================== -->
+	
+	<xsd:element name="IRS9465">
+		<xsd:annotation>
+			<xsd:documentation>IRS 9465 Installment Agreement Request</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS9465Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS9465">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="IRS9465Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS 9465</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			
+			<!-- Form 9465 Tax Return Type Code -->
+			<xsd:element name="F9465TaxReturnTypeCd" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Form 9465 Tax Return Type Code</Description>
+						<ELFFieldNumber>0011</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+					<xsd:simpleType>
+					<xsd:restriction base="StringType">
+						<xsd:enumeration value="FORM 1040"/>
+						<xsd:enumeration value="FORM 1040A"/>
+						<xsd:enumeration value="FORM 1040EZ"/>
+						<xsd:enumeration value="FORM 1040PR"/>
+						<xsd:enumeration value="FORM 1040SS"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>	
+
+			<!-- Installment Agreement Request Tax Year -->
+			<xsd:element name="IATaxYear" type="YearType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Installment Agreement Request Tax Year</Description>
+						<ELFFieldNumber>0012</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>	
+
+			<!-- Person full name -->
+			<xsd:element name="PersonFullName" type="PersonFullNameType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Person full name</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>0014</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>
+
+			<!-- Primary name control -->
+			<xsd:element name="PrimaryNameControl" type="PersonNameControlType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Primary name control</Description>
+						<ELFFieldNumber>0015</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>
+
+			<!-- Primary SSN -->
+			<xsd:element name="PrimarySSN" type="SSNType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Primary SSN</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>0020</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>
+
+			<!-- Spouse name -->
+			<xsd:element name="SpouseName" type="PersonFullNameType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Spouse name</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>0030</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>
+
+			<!-- Spouse name control -->
+			<xsd:element name="SpouseNameControl" type="PersonNameControlType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Spouse name control</Description>
+						<ELFFieldNumber>0035</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>
+
+			<!-- Spouse SSN -->
+			<xsd:element name="SpouseSSN" type="SSNType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Spouse SSN</Description>
+						<LineNumber>1</LineNumber>
+						<ELFFieldNumber>0040</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:element>
+
+			<!-- New Address Indicator -->
+			<xsd:element name="NewAddressInd" type="CheckboxType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>New Address Indicator</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>0100</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>	
+
+			<xsd:element name="HomePhoneGrp" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:choice minOccurs="0">
+							<!-- Home Phone Number -->
+							<xsd:element name="PhoneNumber" type="PhoneNumberType">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Home Phone Number</Description>
+										<LineNumber>3</LineNumber>
+										<ELFFieldNumber>0110 0155</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>	
+							<!-- Foreign Home Phone Number -->
+							<xsd:element name="ForeignPhoneNumber" type="ForeignPhoneNumberType">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Foreign Home Phone Number</Description>
+										<LineNumber>3</LineNumber>
+										<ELFFieldNumber>0110 0155</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>	
+						</xsd:choice>
+						<!-- Best Time To Call At Home -->
+						<xsd:element name="BestTimeToCallAtHomeTxt" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Best Time To Call At Home</Description>
+									<LineNumber>3</LineNumber>
+									<ELFFieldNumber>0120</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="TextType">
+									<xsd:maxLength value="10"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>		
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>		
+			
+			<xsd:element name="WorkPhoneGrp" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:choice minOccurs="0">
+							<!-- Home Phone Number -->
+							<xsd:element name="PhoneNumber" type="PhoneNumberType">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Work Phone Number</Description>
+										<LineNumber>4</LineNumber>
+										<ELFFieldNumber>0130 NL</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>	
+							<!-- Foreign Home Phone Number -->
+							<xsd:element name="ForeignPhoneNumber" type="ForeignPhoneNumberType">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Foreign Work Phone Number</Description>
+										<LineNumber>4</LineNumber>
+										<ELFFieldNumber>0130 NL</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>	
+						</xsd:choice>
+						<!-- Telephone Number Extension Number -->
+						<xsd:element name="TelephoneNumberExtensionNum" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Telephone Number Extension Number</Description>
+									<LineNumber>4</LineNumber>
+									<ELFFieldNumber>0140</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="TextType">
+									<xsd:maxLength value="4"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>	
+
+						<!-- Best Time To Call At Home -->
+						<xsd:element name="BestTimeToCallAtWorkTxt" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Best Time To Call At Work</Description>
+									<LineNumber>4</LineNumber>
+									<ELFFieldNumber>0150</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="TextType">
+									<xsd:maxLength value="10"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>	
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>		
+
+			<!-- Organization Name -->
+			<xsd:element name="OrganizationNm" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Organization Name</Description>
+						<LineNumber>5</LineNumber>
+						<ELFFieldNumber>0160</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="TextType">
+						<xsd:maxLength value="35"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>				
+
+			<xsd:choice minOccurs="0">
+				<!-- Financial Institution US Address -->
+				<xsd:element name="FinancialInstUSAddress" type="USAddressType">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Financial Institution US Address</Description>
+							<LineNumber>5</LineNumber>
+							<ELFFieldNumber>0170 0180 0190 0200</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>				
+				<!-- Financial Institution Foreign Address -->
+				<xsd:element name="FinancialInstForeignAddress" type="ForeignAddressType">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Financial Institution Foreign Address</Description>
+							<LineNumber>5</LineNumber>
+							<ELFFieldNumber>0170 0180 0190 0200</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>	
+			</xsd:choice>
+
+			<!-- Employer Name -->
+			<xsd:element name="EmployerName" type="BusinessNameType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Employer name</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>0210</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>	
+			
+			<xsd:choice minOccurs="0">
+				<!-- Employer US Address -->
+				<xsd:element name="EmployerUSAddress" type="USAddressType">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Employer US Address</Description>
+							<LineNumber>6</LineNumber>
+							<ELFFieldNumber>0220 0230 0240 0250</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>	
+				<!-- Employer Foreign Address -->
+				<xsd:element name="EmployerForeignAddress" type="ForeignAddressType">
+					<xsd:annotation>
+						<xsd:documentation>
+							<Description>Employer Foreign Address</Description>
+							<LineNumber>6</LineNumber>
+							<ELFFieldNumber>0220 0230 0240 0250</ELFFieldNumber>
+						</xsd:documentation>
+					</xsd:annotation>
+				</xsd:element>
+			</xsd:choice>
+			
+			<!-- Tax Due Amount -->
+			<xsd:element name="TaxDueAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Total amount you owe as shown on your tax return(s) (or notice(s))</Description>
+						<LineNumber>7</LineNumber>
+						<ELFFieldNumber>0280</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Payment Amount -->
+			<xsd:element name="PaymentAmt" type="USAmountType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Amount of any payment you are making</Description>
+						<LineNumber>8</LineNumber>
+						<ELFFieldNumber>0290</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Payment Due Amount -->
+			<xsd:element name="PaymentDueAmt" type="USAmountType">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Amount you can pay each month</Description>
+						<LineNumber>9</LineNumber>
+						<ELFFieldNumber>0300</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Payment Due Day Number -->
+			<xsd:element name="PaymentDueDayNum">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Enter the day you want to make your payment each month</Description>
+						<LineNumber>10</LineNumber>
+						<ELFFieldNumber>0310</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:simpleType>
+					<xsd:restriction base="IntegerType">
+						<xsd:minInclusive value="1" />
+						<xsd:maxInclusive value="28" />
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:element>
+			
+			<!-- Routing Transit Number -->
+			<xsd:element name="RoutingTransitNumber" type="RoutingTransitNumberType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<xsd:Description>Routing Transit Number</xsd:Description>
+						<LineNumber>11a</LineNumber>
+						<ELFFieldNumber>0330</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Bank Account Number -->
+			<xsd:element name="BankAccountNumber" type="BankAccountNumberType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<xsd:Description>Bank Account Number</xsd:Description>
+						<LineNumber>11b</LineNumber>
+						<ELFFieldNumber>0340</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

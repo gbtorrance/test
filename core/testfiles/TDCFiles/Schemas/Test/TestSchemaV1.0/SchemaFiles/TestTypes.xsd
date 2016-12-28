@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://com.gurtz.tdc/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://com.gurtz.tdc/test" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+
+
+
+
+
+	<xsd:group name="Group1">
+		<xsd:sequence>
+			<xsd:element name="Group1Element1" type="xsd:string"/>
+			<xsd:element name="Group1Element1" type="xsd:integer"/>
+		</xsd:sequence>
+	</xsd:group>
+
+	<xsd:simpleType name="RestrictedSimpleType1">
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="EnumSimpleType1">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="EnumVal1"/>
+			<xsd:enumeration value="EnumVal2"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="ComplexType1">
+		<xsd:sequence>
+			<xsd:element name="ComplexType1Element1" type="xsd:string"/>
+			<xsd:element name="ComplexType1Element1" type="xsd:integer"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+
+<!--
+	<xsd:element name="TestRoot">
+		<xsd:complexType>
+			<xsd:sequence minOccurs="0" maxOccurs="2">
+				<xsd:group ref="TestGroup" minOccurs="0" maxOccurs="2"/>
+				<xsd:element ref="B" minOccurs="1" maxOccurs="1"/>
+				<xsd:group ref="TestGroup" minOccurs="1" maxOccurs="1"/>
+				<xsd:sequence>
+					<xsd:element ref="T"/>
+					<xsd:element name="U" type="TestType"/>
+				</xsd:sequence>
+				<xsd:element name="C" type="xsd:integer" minOccurs="0" maxOccurs="2"/>
+				<xsd:choice>
+					<xsd:element ref="R"/>
+					<xsd:element ref="S"/>
+				</xsd:choice>
+				<xsd:choice minOccurs="0">
+					<xsd:element name="D">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="E" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+								<xsd:sequence>
+									<xsd:element name="V" type="xsd:integer" minOccurs="0" maxOccurs="1"/>
+									<xsd:element name="W" type="xsd:string"/>
+								</xsd:sequence>
+							</xsd:sequence>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="F" type="TestType" minOccurs="0" maxOccurs="4"/>
+					<xsd:sequence minOccurs="0" maxOccurs="2">
+						<xsd:element name="G" type="TestType"/>
+						<xsd:element name="H" type="TestType"/>
+						<xsd:sequence minOccurs="0" maxOccurs="2">
+							<xsd:element name="I" type="TestType"/>
+							<xsd:element name="J" type="TestType"/>
+						</xsd:sequence>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:element name="K" type="TestType"/>
+						<xsd:element name="L" type="TestType"/>
+					</xsd:sequence>
+					<xsd:choice>
+						<xsd:element name="P" type="TestType"/>
+						<xsd:element name="Q" type="TestType" maxOccurs="3"/>
+					</xsd:choice>
+					<xsd:choice maxOccurs="2">
+						<xsd:element name="X" type="TestType"/>
+						<xsd:element name="Y" type="TestType"/>
+					</xsd:choice>
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name="AttribA" type="xsd:string" use="required" fixed="NCBusiness2014v1.0_Partv0.6"/>
+		</xsd:complexType>
+	</xsd:element>
+-->
+	<xsd:complexType name="BType">
+		<xsd:sequence>
+			<xsd:element name="BA" type="xsd:string"/>
+			<xsd:element name="BB" type="xsd:integer"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="B" type="BType"/>
+	<xsd:element name="T">
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="BType">
+					<xsd:choice>
+						<xsd:element name="TBC" type="xsd:string"/>
+						<xsd:element name="TBD" type="xsd:string"/>
+					</xsd:choice>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="R" type="RType"/>
+<!--
+	<xsd:element name="S">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="RType">
+					<xsd:attribute name="SAttrib" type="xsd:integer"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+-->
+
+
+</xsd:schema>
+

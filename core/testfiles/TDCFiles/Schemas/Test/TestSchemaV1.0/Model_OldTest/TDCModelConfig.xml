@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>OldTest</ModelName>
+	<ModelDescription>Old Test Model</ModelDescription>
+	<SchemaRootFile>OldTest.xsd</SchemaRootFile>
+	<SchemaRootElementName>TestRoot</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://com.gurtz.tdc/test</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>false</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	<DefaultOccursCount>5</DefaultOccursCount>
+	
+</Config>

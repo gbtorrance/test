@@ -1,0 +1,13 @@
+TestVarious, minOccurs:1, maxOccurs:1
+   [SEQUENCE], minOccurs:1, maxOccurs:1
+      ElementFixed, minOccurs:1, maxOccurs:1
+      ElementDefault, minOccurs:1, maxOccurs:1
+      ElementNotFixedOrDefault, minOccurs:1, maxOccurs:1
+      ElementEmpty1, minOccurs:1, maxOccurs:1
+      ElementEmpty2, minOccurs:1, maxOccurs:1
+      ElementWithAttribute, minOccurs:1, maxOccurs:1
+         @AttributeFixed, req:true
+         @MyAttributeFixed, req:false
+         @MyAttributeDefault, req:false
+      ElementString1, minOccurs:1, maxOccurs:1
+      ElementString2, minOccurs:1, maxOccurs:1

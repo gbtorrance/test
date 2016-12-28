@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://www.irs.gov/efile" xmlns="http://www.irs.gov/efile" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Schema - To Whom Gasoline Sold Statement</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd" />
+
+
+	<!-- =================================================================== -->
+	<!-- ================ To Whom Gasoline Sold Statement ================== -->
+	<!-- =================================================================== -->
+
+
+	<xsd:element name="ToWhomGasolineSoldStatement">
+		<xsd:annotation>
+			<xsd:documentation>To whom gasoline sold statement</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="ToWhomGasolineSoldStatementType">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="StringType" fixed="ToWhomGasolineSoldStatement">
+						<xsd:annotation>
+							<xsd:documentation>IRS internal use only. To avoid error in the return, do not include the attribute name or value.</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:complexType name="ToWhomGasolineSoldStatementType">
+		<xsd:annotation>
+			<xsd:documentation>Content model for to whom gasoline sold statement</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>	
+		
+			<!-- Gasoline Sold Statement -->
+			<xsd:element name="GasolineSoldStatement" type="GasolineSoldStatementType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Gasoline sold statement</Description>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<!-- Type for Repeating Group - Gasoline Sold Statement -->
+	<xsd:complexType name="GasolineSoldStatementType">
+		<xsd:sequence>	
+		
+			<xsd:element name="GasolineSeller" minOccurs="0">
+				<xsd:complexType>
+					<xsd:annotation>
+						<xsd:documentation>Content model to whom gasoline sold statement</xsd:documentation>
+					</xsd:annotation>
+					<xsd:sequence>
+						<!-- Name -->
+						<xsd:element name="Name" type="BusinessNameType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Name</Description>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						
+						<!-- TIN (SSN, EIN or Missing EIN Reason) -->
+						<xsd:choice>
+						
+							<!-- SSN -->
+							<xsd:element name="SSN" type="SSNType">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>SSN</Description>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							
+							<!-- EIN -->
+							<xsd:element name="EIN" type="EINType">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>EIN</Description>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							
+							<!-- Missing EIN Reason -->
+							<xsd:element name="MissingEINReason">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Missing EIN reason</Description>
+									</xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="StringType">
+										<xsd:enumeration value="APPLD FOR"/>
+										<xsd:enumeration value="FOREIGNUS"/>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:element>
+							
+						</xsd:choice>
+
+						<!-- Number of Gallons Sold -->
+						<xsd:element name="GallonsSold" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Number of gallons sold</Description>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="IntegerType">
+									<xsd:totalDigits value="9"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+</xsd:schema>

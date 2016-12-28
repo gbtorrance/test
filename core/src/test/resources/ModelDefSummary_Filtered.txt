@@ -1,0 +1,15 @@
+TestRoot, minOccurs:1, maxOccurs:1
+   @AttribA, req:true
+   [SEQUENCE], minOccurs:0, maxOccurs:2
+      B, minOccurs:1, maxOccurs:1
+         [SEQUENCE], minOccurs:1, maxOccurs:1
+            BA, minOccurs:1, maxOccurs:1
+            BB, minOccurs:1, maxOccurs:1
+      [CHOICE], minOccurs:0, maxOccurs:1
+         D, minOccurs:1, maxOccurs:1
+            [SEQUENCE], minOccurs:1, maxOccurs:1
+               E, minOccurs:0, maxOccurs:1
+               [SEQUENCE], minOccurs:1, maxOccurs:1
+                  W, minOccurs:1, maxOccurs:1
+         [CHOICE], minOccurs:1, maxOccurs:2
+            X, minOccurs:1, maxOccurs:1

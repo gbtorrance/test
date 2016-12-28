@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Config>
+	<ModelName>ConfigTest</ModelName>
+	<ModelDescription>Config Test Model</ModelDescription>
+	<SchemaRootFile>SchemaRootFile.xsd</SchemaRootFile>
+	<SchemaRootElementName>TestRoot</SchemaRootElementName>
+	<SchemaRootElementNamespace>http://org.tdc/test</SchemaRootElementNamespace>
+	<SchemaFailOnParserWarning>true</SchemaFailOnParserWarning>
+	<SchemaFailOnParserNonFatalError>true</SchemaFailOnParserNonFatalError>
+	<DefaultOccursCount>5</DefaultOccursCount>
+	
+	<Customizer>
+		<FileNamePrefix>Customizer_</FileNamePrefix>
+		<DefaultStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultStyle>
+		<DefaultNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>11</FontHeight>
+		</DefaultNodeStyle>
+		<ParentNodeStyle>
+			<FontName>Arial</FontName>
+			<FontHeight>12</FontHeight>
+			<ColorRGB>0 0 255</ColorRGB> <!-- blue -->
+			<Italic>false</Italic>
+		</ParentNodeStyle>
+		<AttribNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>13</FontHeight>
+			<ColorRGB>34 97 13</ColorRGB> <!-- green -->
+		</AttribNodeStyle>
+		<CompositorNodeStyle>
+			<FontName>Times New Roman</FontName>
+			<FontHeight>14</FontHeight>
+			<ColorRGB>64 64 64</ColorRGB> <!-- dark gray -->
+			<Italic>true</Italic>
+		</CompositorNodeStyle>
+		<ChoiceMarkerNodeStyle>
+			<FontName>Calibri</FontName>
+			<FontHeight>15</FontHeight>
+			<ColorRGB>255 0 0</ColorRGB> <!-- red -->
+		</ChoiceMarkerNodeStyle>
+		<NodeColumnCount>12</NodeColumnCount>
+		<NodeColumnWidth>500</NodeColumnWidth>
+		<ReadOccursCountOverrideFromVariable>OCCURS_COUNT_OVERRIDE</ReadOccursCountOverrideFromVariable>
+		<AllowMinMaxInvalidOccursCountOverride>true</AllowMinMaxInvalidOccursCountOverride>
+	</Customizer>
+	
+</Config>

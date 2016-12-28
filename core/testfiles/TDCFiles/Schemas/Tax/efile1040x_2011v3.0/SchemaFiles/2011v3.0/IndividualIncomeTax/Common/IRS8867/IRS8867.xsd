@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.irs.gov/efile" targetNamespace="http://www.irs.gov/efile" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xsd:annotation>
+		<xsd:documentation>
+			<Description>IRS e-file Schema - IRS Form 8867</Description>
+			<TaxYear>2011</TaxYear>
+			<MaturityLevel>Final Release</MaturityLevel>
+			<ReleaseDate>October 25, 2011</ReleaseDate>
+		</xsd:documentation>
+	</xsd:annotation>
+	<xsd:include schemaLocation="../../../Common/efileTypes.xsd"/>
+	<!-- ==================================================================-->
+	<!-- ============================ IRS8867 =============================-->
+	<!-- ==================================================================-->
+	<xsd:element name="IRS8867">
+		<xsd:annotation>
+			<xsd:documentation>IRS Form 8867</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:complexContent>
+				<xsd:extension base="IRS8867Type">
+					<xsd:attributeGroup ref="DocumentAttributes">
+						<xsd:annotation>
+							<xsd:documentation>Common return document attributes</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attributeGroup>
+					<xsd:attribute name="documentName" type="xsd:string" fixed="IRS8867"/>
+				</xsd:extension>
+			</xsd:complexContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="IRS8867Type">
+		<xsd:annotation>
+			<xsd:documentation>Content model for IRS8867</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+
+			<!-- Part I - All Taxpayers -->
+
+			<!-- Taxpayer Filing Status Married Filing Separately Indicator -->
+			<xsd:element name="TaxpayerFSMarriedFilingSepInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Taxpayer Filing Status Married Filing Separately Indicator</Description>
+						<LineNumber>2</LineNumber>
+						<ELFFieldNumber>0020 0030</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- SSN Valid For Employment Or Earned Income Credit Purpose Indicator -->
+			<xsd:element name="SSNValidForEmplmnOrEICPrpsInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>SSN Valid For Employment Or Earned Income Credit Purpose Indicator</Description>
+						<LineNumber>3</LineNumber>
+						<ELFFieldNumber>0040 0050</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Form 2555 Or Form 2555-EZ Indicator -->
+			<xsd:element name="Form2555OrForm2555EZInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Form 2555 Or Form 2555-EZ Indicator</Description>
+						<LineNumber>4</LineNumber>
+						<ELFFieldNumber>0060 0070</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Nonresident Alien Indicator -->
+			<xsd:element name="NonresidentAlienInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Nonresident Alien Indicator</Description>
+						<LineNumber>5a</LineNumber>
+						<ELFFieldNumber>0080 0090</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Taxpayer Filing Status Married Filing Jointly Indicator -->
+			<xsd:element name="TxpyrFSMarriedFilingJointlyInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Taxpayer Filing Status Married Filing Jointly Indicator</Description>
+						<LineNumber>5b</LineNumber>
+						<ELFFieldNumber>0100 0110</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Investment Income Over Limit Indicator -->
+			<xsd:element name="InvestmentIncomeOverLimitInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Investment Income Over Limit Indicator</Description>
+						<LineNumber>6</LineNumber>
+						<ELFFieldNumber>0120 0130</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- EIC Eligible Claim Qualifying Child Of Other Indicator -->
+			<xsd:element name="EICEligClmQlfyChldOfOtherInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>EIC Eligible Claim Qualifying Child Of Other Indicator</Description>
+						<LineNumber>7</LineNumber>
+						<ELFFieldNumber>0140 0150</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Part II - Taxpayers With a Child -->
+
+			<xsd:element name="TaxpayerWithAChildGrp" maxOccurs="3">
+				<xsd:complexType>
+					<xsd:sequence>
+
+						<!-- Child Name -->
+						<xsd:element name="ChildName" type="PersonNameType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Child Name</Description>
+												<LineNumber>8</LineNumber>
+									<ELFFieldNumber>0170 0340 0510</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<!-- Child Relationship Test Indicator -->
+						<xsd:element name="ChildRelationshipTestInd" type="BooleanType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Child Relationship Test Indicator</Description>
+									<LineNumber>9</LineNumber>
+									<ELFFieldNumber>0180 0190 0350 0360 0520 0530</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<!-- Child Unmarried Or Marrried Claimed As Dependent Indicator -->
+						<xsd:element name="ChldUnmarriedOrMarClmAsDepdInd" type="BooleanType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Child Unmarried Or Marrried Claimed As Dependent Indicator</Description>
+									<LineNumber>10</LineNumber>
+									<ELFFieldNumber>0200 0210 0370 0380 0540 0550</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<!-- Live With Child In US Over Half Year Indicator -->
+						<xsd:element name="LiveWithChldInUSOverHalfYrInd" type="BooleanType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Live With Child In US Over Half Year Indicator</Description>
+									<LineNumber>11</LineNumber>
+									<ELFFieldNumber>0220 0230 0390 0400 0560 0570</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<!-- Child Under 19, Younger Than Taxpayer, Student Or Disabled Indicator -->
+						<xsd:element name="ChildUnder19YngrStdntOrDsblInd" type="BooleanType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Child Under 19, Younger Than Taxpayer, Student Or Disabled Indicator</Description>
+									<LineNumber>12</LineNumber>
+									<ELFFieldNumber>0240 0250 0410 0420 0580 0590</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<!-- Other Person Claiming As Qualifying Child Indicator -->
+						<xsd:element name="OtherPersonClaimAsQlfyChildInd" type="BooleanType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Other Person Claiming As Qualifying Child Indicator</Description>
+									<LineNumber>13a</LineNumber>
+									<ELFFieldNumber>0260 0270 0430 0440 0600 0610</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+						<!-- Child Relationship -->
+						<xsd:element name="ChildRelationship">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>Child Relationship</Description>
+									<LineNumber>13b</LineNumber>
+									<ELFFieldNumber>0280 0450 0620</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:simpleType>
+								<xsd:restriction base="StringType">
+									<xsd:enumeration value="SON"/>
+									<xsd:enumeration value="DAUGHTER"/>
+									<xsd:enumeration value="STEPCHILD"/>
+									<xsd:enumeration value="FOSTER CHILD"/>
+									<xsd:enumeration value="BROTHER"/>
+									<xsd:enumeration value="SISTER"/>
+									<xsd:enumeration value="STEPBROTHER"/>
+									<xsd:enumeration value="STEPSISTER"/>
+									<xsd:enumeration value="HALF BROTHER"/>
+									<xsd:enumeration value="HALF SISTER"/>
+									<xsd:enumeration value="GRANDCHILD"/>
+									<xsd:enumeration value="NIECE"/>
+									<xsd:enumeration value="NEPHEW"/>
+								</xsd:restriction>
+							</xsd:simpleType>
+						</xsd:element>
+
+						<xsd:choice minOccurs="0">
+						<!-- Qualifying Child Under Tiebreaker Rule Indicator -->
+							<xsd:element name="QlfyChldUnderTiebreakerRuleInd" type="BooleanType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Qualifying Child Under Tiebreaker Rule Indicator</Description>
+										<LineNumber>13c</LineNumber>
+										<ELFFieldNumber>0290 0300 0460 0470 0630 0640</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+							<!-- Do Not Know Indicator -->
+							<xsd:element name="DoNotKnowInd" type="CheckboxType" minOccurs="0">
+								<xsd:annotation>
+									<xsd:documentation>
+										<Description>Do Not Know Indicator</Description>
+										<LineNumber>13c</LineNumber>
+										<ELFFieldNumber>0310 0480 0650</ELFFieldNumber>
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:element>
+						</xsd:choice>
+
+						<!-- SSN Valid For Employment Or Earned Income Credit Purpose Indicator -->
+						<xsd:element name="SSNValidForEmplmnOrEICPrpsInd" type="BooleanType" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>
+									<Description>SSN Valid For Employment Or Earned Income Credit Purpose Indicator</Description>
+									<LineNumber>14</LineNumber>
+									<ELFFieldNumber>0320 0330 0490 0500 0660 0670</ELFFieldNumber>
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<!-- Earned Income And Adjusted Gross Income Below Limit Indicator -->
+			<xsd:element name="EarnedIncmAndAGIBelowLimitInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Earned Income And Adjusted Gross Income Below Limit Indicator</Description>
+						<LineNumber>15</LineNumber>
+						<ELFFieldNumber>0680 0690</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Part III - Taxpayers Without a Qualifying Child -->
+
+			<!-- Main Home In US Over Half Year Indicator -->
+			<xsd:element name="MainHomeInUSOverHalfYrInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Main Home In US Over Half Year Indicator Indicator</Description>
+						<LineNumber>16</LineNumber>
+						<ELFFieldNumber>0710 0720</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Taxpayer Or Spouse Age 25 But Under 65 Indicator -->
+			<xsd:element name="TxpyerOrSpsAge25ButUnder65Ind" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Taxpayer Or Spouse Age 25 But Under 65 Indicator</Description>
+						<LineNumber>17</LineNumber>
+						<ELFFieldNumber>0730 0740</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Eligible To Be Claimed As Dependent Indicator -->
+			<xsd:element name="ClaimedAsDependentInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Eligible To Be Claimed As Dependent Indicator</Description>
+						<LineNumber>18</LineNumber>
+						<ELFFieldNumber>0750 0760</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Earned Income And Adjusted Gross Income Below Limit Indicator -->
+			<xsd:element name="EarnedIncmAndAGIBelowLimitInd2" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Earned Income And Adjusted Gross Income Below Limit Indicator</Description>
+						<LineNumber>19</LineNumber>
+						<ELFFieldNumber>0770 0780</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Part IV - Due Diligence Requirements -->
+
+			<!-- Taxpayer Provided Or Obtained Information Indicator -->
+			<xsd:element name="TxpyrProvidedOrObtainedInfoInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Taxpayer Provided Or Obtained Information Indicator</Description>
+						<LineNumber>20</LineNumber>
+						<ELFFieldNumber>0770 0780</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Completed EIC Or Own Worksheet Indicator -->
+			<xsd:element name="CompletedEICOrOwnWorksheetInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Completed EIC Or Own Worksheet Indicator</Description>
+						<LineNumber>21</LineNumber>
+						<ELFFieldNumber>0810 0820</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Complied With Knowledge Requirements Indicator -->
+			<xsd:element name="CompliedWithKnowledgeRqrInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Complied With Knowledge Requirements Indicator</Description>
+						<LineNumber>22</LineNumber>
+						<ELFFieldNumber>0830 0840</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+			<!-- Keep Records Indicator -->
+			<xsd:element name="KeepRecordsInd" type="BooleanType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						<Description>Keep Records Indicator</Description>
+						<LineNumber>23</LineNumber>
+						<ELFFieldNumber>0850 0860</ELFFieldNumber>
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>
